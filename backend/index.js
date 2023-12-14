@@ -14,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
 app.use("/users", userRouter);
 app.use("/tasks", taskRouter);
 app.use("/project", projectRouter);
@@ -34,3 +35,4 @@ app.listen(PORT, async () => {
     console.log("Index Error", error.message);
   }
 });
+
