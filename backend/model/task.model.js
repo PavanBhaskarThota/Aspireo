@@ -8,8 +8,8 @@ const taskSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  dueDate: {
-    type: Date,
+  dueDateTime: {
+    type: String,
   },
   priority: {
     type: String,
@@ -26,14 +26,13 @@ const taskSchema = new mongoose.Schema({
   },
   userId: {
     type: String,
-    required: true,
   },
   userName: {
     type: String,
-    required: true,
   },
   createdAt: {
-    type: Date
+    type: String,
+    default: Date()
   },
 });
 
