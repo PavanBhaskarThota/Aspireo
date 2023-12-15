@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import {
   Flex,
@@ -9,7 +7,6 @@ import {
   useDisclosure,
   Button,
   Image,
-  Spacer,
   Drawer,
   DrawerOverlay,
   DrawerContent,
@@ -19,9 +16,8 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link} from 'react-router-dom';
-import Aspireo from '../assets/AspireoLogo.jpg';
-
+import { Link } from "react-router-dom";
+import Aspireo from "../assets/Aspireo.logo.jpg";
 
 export const Navbar = () => {
   const newFont = `
@@ -33,13 +29,13 @@ export const Navbar = () => {
 
   return (
     <Flex
-      justify="space-between"
-      align="flex-end"
+      justify="space-around"
+      align="center"
       pl={{ base: 3, lg: 10 }}
       pr={{ base: 3, lg: 10 }}
-      pb={2}
+      pt={2}
       bg="white"
-      color="#4573D2"
+      // color="#4573D2"
       position="sticky"
       top={0}
       zIndex={1000}
@@ -47,8 +43,9 @@ export const Navbar = () => {
       h={{ base: "70px", md: "100px" }}
       boxShadow="0px 2px 2px -2px rgba(0,0,0,0.2)"
       fontFamily="Lexend, sans-serif"
-      w={{ base: "100%", md: "80%" }}
+      w={{ base: "100%", md: "100%" }}
       m="auto"
+      
     >
       <Box dangerouslySetInnerHTML={{ __html: newFont }} textAlign={"left"} />
 
@@ -60,7 +57,7 @@ export const Navbar = () => {
               <DrawerHeader>Menu</DrawerHeader>
               <DrawerBody>
                 <VStack spacing={4} align="stretch">
-                <Link to="/">Home</Link>
+                  <Link to="/">Home</Link>
                   <Link to="/tasks">Tasks</Link>
                   <Link to="/admin">Admin</Link>
                   <Link to="/about">About</Link>
@@ -83,46 +80,53 @@ export const Navbar = () => {
         justifyContent="center"
         size="lg"
       />
-      <Image
-        src={Aspireo}
-        alt="Logo"
-        boxSize="70px"
-        display={{ base: "none", md: "block" }}
-      />
+      <Box w={"30%"}>
+        <Link to="/">
+          <Image
+            src={Aspireo}
+            alt="Logo"
+            width="40%"
+            display={{ base: "none", md: "block" }}
+          />
+        </Link>
+      </Box>
 
       <Flex
         display={{ base: "none", md: "flex" }}
-        flex={1}
+        // flex={1}
+        w={"70%"}
         align="center"
-        justify="space-between"
+        justify="space-around"
         fontSize={"md"}
         ml={{ base: 0, md: 10 }}
         mb={2}
         gap={{ base: "10px", md: "none" }}
+       
       >
         <Link to="/">Home</Link>
         <Link to="/tasks">Tasks</Link>
         <Link to="/admin">Admin</Link>
         <Link to="/about">About</Link>
         <Link to="/signup">Signup</Link>
-  
       </Flex>
-      <Spacer />
+      {/* <Spacer /> */}
 
-      <Button
-        mr={3}
-        mb={2}
-        colorScheme="#06113C"
-        variant="outline"
-        _hover={{
-          bg: "#4573D2",
-          color: "white",
-        }}
-      >
-         <Link to="/login">Login</Link>
-
-      </Button>
+      <Box w={"30%"}>
+        <Button
+          display={"block"}
+          margin={"auto"}
+          mr={3}
+          mb={2}
+          colorScheme="#06113C"
+          variant="outline"
+          _hover={{
+            bg: "#4573D2",
+            color: "white",
+          }}
+        >
+          <Link to="/login">Login</Link>
+        </Button>
+      </Box>
     </Flex>
   );
 };
-
