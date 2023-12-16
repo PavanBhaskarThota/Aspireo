@@ -2,24 +2,29 @@ import {
   AspectRatio,
   Box,
   Button,
+  Collapse,
   Flex,
   Heading,
   Image,
   Input,
   Link,
-  List,
-  ListIcon,
-  ListItem,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { MdCheckCircle } from "react-icons/md";
+import { TasksHome } from "../components/TasksHome";
+import { TimeHome } from "../components/TimeHome";
+import { Deadlines } from "../components/Deadlines";
+import { Footer } from "../components/Footer";
+
 export const HomePage = () => {
+  const { isOpen, onToggle } = useDisclosure();
+
   return (
     <>
       <Box
@@ -27,17 +32,11 @@ export const HomePage = () => {
         pt={"150px"}
       >
         <Box w={"70%"} m={"auto"} textAlign={"center"} pb={"100px"}>
-          <Heading
-            fontWeight={"400"}
-            size={"2xl"}
-            lineHeight={"70px"}
-            mb={10}
-            //bgGradient="linear(to-r, #000000,#ffffff,)"
-            //bgClip="text"
-          >
-            Empower your aspirations with 
+          <Heading fontWeight={"400"} size={"2xl"} lineHeight={"70px"} mb={10}>
+            Empower your aspirations with
             <span style={{ fontWeight: "bold", color: "#4573D2" }}>
-               {" "}Aspireo{" "}
+              {" "}
+              Aspireo{" "}
             </span>
             – Where Vision Meets Project, and Dreams Take Flight
           </Heading>
@@ -46,18 +45,19 @@ export const HomePage = () => {
           </Text>
           <Flex
             w={"50%"}
+            m={'auto'}
             gap={2}
             justifyContent={"space-around"}
             alignItems={"center"}
             pt={10}
           >
-            <Input placeholder="email" size="lg" w={"50%"} outline="#4573D2" />
+            <Input placeholder="email" size="lg" w={"50%"} outline="#4573D2" border={'2px solid #06113C'} h={'60px'} borderRadius={'30px'}/>
             <Button
-              h="50px"
+              h="60px"
               bgColor={"#06113C"}
               color={"white"}
-              borderRadius={"40px"}
-              w="30%"
+              borderRadius={"30px"}
+              w="40%"
               _hover={{
                 bg: "white",
                 color: "black",
@@ -80,7 +80,7 @@ export const HomePage = () => {
           <Box w={"50%"}>
             <Image
               src="https://img.freepik.com/free-vector/blogging-isometric-concept-with-content-plan-making-process-3d-illustration_1284-55140.jpg?size=626&ext=jpg&ga=GA1.1.937730311.1702627727&semt=ais"
-              w={"90%"}
+              w={"80%"}
               display={"block"}
               margin={"auto"}
             />
@@ -91,7 +91,7 @@ export const HomePage = () => {
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <Box w={"50%"} m={"auto"}>
+            <Box w={"70%"} m={"auto"}>
               <Heading size={"2xl"} mb={5}>
                 Simple to build.
               </Heading>
@@ -160,153 +160,60 @@ export const HomePage = () => {
         </Text>
       </Flex>
 
-      <Box w={"90%"} m={"auto"} mt={"100px"}>
+      <Box w={"90%"} m={"auto"} mt={"100px"} mb={"50px"}>
         <Tabs isFitted variant="enclosed">
           <TabList mb="1em">
             <Tab fontSize={"2xl"}>Tasks & Projects</Tab>
             <Tab fontSize={"2xl"}>Time Tracking</Tab>
-            <Tab fontSize={"2xl"}>Deablines</Tab>
+            <Tab fontSize={"2xl"}>Deadlines</Tab>
           </TabList>
           <TabPanels>
-            <TabPanel>
-              <Flex gap={10} w={"90%"} m={"auto"}>
-                <Box w={"50%"}>
-                  <Image
-                    src="https://img.freepik.com/free-vector/add-tasks-concept-illustration_114360-4765.jpg?size=626&ext=jpg&ga=GA1.1.937730311.1702627727&semt=sph"
-                    w={"90%"}
-                  />
-                </Box>
-                <Box w={"50%"} mt={10}>
-                  <Heading size={"2xl"} mb={10}>
-                    Tasks & Projects
-                  </Heading>
-                  <Text w={"80%"} fontSize={"2xl"}>
-                    Plan, track, & manage projects of any size, from simple to
-                    complex-across your team from one easy-to-use platform.
-                  </Text>
+            <TasksHome />
 
-                  <Flex w={"80%"} gap={"15%"} mt={10} fontSize={"2xl"}>
-                    <Box>
-                      <List spacing={5}>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Forms
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Workflows
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Custom fields
-                        </ListItem>
-                      </List>
-                    </Box>
-                    <Box>
-                      <List spacing={5}>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Dependencies
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Reports
-                        </ListItem>
-                      </List>
-                    </Box>
-                  </Flex>
-                  <Button
-                    mt={10}
-                    h={"60px"}
-                    bg={"#4573D2"}
-                    color={"white"}
-                    _hover={{
-                      bg: "white",
-                      color: "black",
-                      border: "1px solid #4573D2",
-                      outline: "blue",
-                    }}
-                  >
-                    {" "}
-                    Get Started for free{" "}
-                  </Button>
-                </Box>
-              </Flex>
-            </TabPanel>
+            <TimeHome />
 
-            <TabPanel>
-              <Flex gap={10} w={"90%"} m={"auto"}>
-                <Box w={"50%"} mt={10}>
-                  <Heading size={"2xl"} mb={10}>
-                    Time Tracking
-                  </Heading>
-                  <Text w={"80%"} fontSize={"2xl"}>
-                    Plan, track, & manage projects of any size, from simple to
-                    complex-across your team from one easy-to-use platform.
-                  </Text>
-
-                  <Flex w={"80%"} gap={"10%"} mt={10} fontSize={"2xl"}>
-                    <Box>
-                      <List spacing={5}>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Timesheets
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Time estimates
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Timer
-                        </ListItem>
-                      </List>
-                    </Box>
-                    <Box>
-                      <List spacing={5}>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Reports
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Export timesheets
-                        </ListItem>
-                      </List>
-                    </Box>
-                  </Flex>
-                  <Button
-                    mt={10}
-                    h={"60px"}
-                    bg={"#4573D2"}
-                    color={"white"}
-                    _hover={{
-                      bg: "white",
-                      color: "black",
-                      border: "1px solid #4573D2",
-                      outline: "blue",
-                    }}
-                  >
-                    {" "}
-                    Get Started for free{" "}
-                  </Button>
-                </Box>
-
-                <Box w={"50%"}>
-                  <Image
-                    src="https://img.freepik.com/free-vector/isometric-outline-time-management-concept_52683-55736.jpg?size=626&ext=jpg&ga=GA1.1.937730311.1702627727&semt=ais"
-                    w={"90%"}
-                  />
-                </Box>
-              </Flex>
-            </TabPanel>
-
-            <TabPanel>
-              <p>two!</p>
-            </TabPanel>
+            <Deadlines />
           </TabPanels>
         </Tabs>
       </Box>
+
+      <Box w={"90%"} m={"auto"}>
+        <Button
+          onClick={onToggle}
+          mt={10}
+          h={"60px"}
+          bg={"#4573D2"}
+          color={"white"}
+        >
+          Click Me
+        </Button>
+        <Collapse in={isOpen} animateOpacity>
+          <Box
+            p="40px"
+            color="white"
+            mt="4"
+            bg="#4573D2"
+            rounded="md"
+            shadow="md"
+            _hover={{
+              bg: "white",
+              color: "black",
+              border: "1px solid #4573D2",
+              outline: "blue",
+            }}
+          >
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Temporibus in sit quisquam unde ullam repellendus nemo dolor
+              blanditiis nisi accusantium. Quae asperiores nobis repellat
+              tempora alias. Explicabo voluptates nulla doloribus.
+            </p>
+          </Box>
+        </Collapse>
+      </Box>
+
+      <Footer/>
+      
     </>
   );
 };
