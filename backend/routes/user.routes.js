@@ -5,7 +5,7 @@ const { userModel } = require("../model/user.model");
 const {  BlackListModel } = require("../model/blacklist.model");
 
 const userRouter = express.Router();
-app.post("/registration",async(req,res)=>{
+userRouter.post("/registration",async(req,res)=>{
   const{email,password,confirmPassword,name}=req.body
   console.log(req.body)
 try {
@@ -64,7 +64,7 @@ userRouter.post("/login", async (req, res) => {
     }
   });
   
-userRouter.get("/logout", async (req, res) => {
+  userRouter.get("/logout", async (req, res) => {
     const token= req.headers.authorization?.split(' ')[1] || null;
 
     try {
