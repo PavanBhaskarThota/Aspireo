@@ -4,6 +4,7 @@ import { HomePage } from '../pages/HomePage'
 import { AdminPage } from '../pages/AdminPage'
 import { Tasks } from '../pages/Tasks'
 import { AboutPage } from '../pages/AboutPage'
+import { LoginPage } from '../pages/LoginPage'
 
 
 export const AllRoutes = () => {
@@ -14,6 +15,7 @@ export const AllRoutes = () => {
             <Route path='/tasks' element={<Tasks/>}></Route>
             <Route path='/about' element={<AboutPage/>}></Route>
             <Route path='/admin' element={<AdminPage/>}></Route>
+            <Route path='/login' element={<LoginPage/>}></Route>
         </Routes>
     </div>
   )
