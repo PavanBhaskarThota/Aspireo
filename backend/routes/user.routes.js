@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const { userModel } = require("../model/user.model");
-const { tokenModel } = require("../model/blacklist.model");
+const {  BlackListModel } = require("../model/blacklist.model");
 
 const userRouter = express.Router();
 app.post("/registration",async(req,res)=>{
@@ -64,20 +64,23 @@ userRouter.post("/login", async (req, res) => {
     }
   });
   
-  userRouter.get("/logout", async (req, res) => {
-    const token = req.headers.authorization?.split(" ")[1];
+userRouter.get("/logout", async (req, res) => {
+    const token= req.headers.authorization?.split(' ')[1] || null;
+
     try {
-      if (token) {
-        const loggedOut= await tokenModel.updateOne({}, {$addToSet: {blackList: token}},{
-          upsert:true
-      });
-        res.status(200).send({ message: "Logout successful" });
-      } else {
-        res.status(401).send({ message: "Unauthorized" });
-      }
-    } catch (error) {
-      res.status(500).send({ message: "Internal Server Error" });
+     
+        if(token){
+            const loggedOut= await BlackListModel.updateOne({}, {$addToSet: {blackList: token}},{
+                upsert:true
+            });
+
+            res.status(200).send({"msg":"LoggedOut Successfully", loggedOut});
+        }
+        
+    }catch(error){
+        res.status(400).send({"logout error":error.message});
     }
+    
   });
   
 
