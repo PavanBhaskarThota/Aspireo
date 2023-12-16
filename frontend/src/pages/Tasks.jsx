@@ -51,6 +51,18 @@ export const Tasks = () => {
     setRefresh(!refresh);
   };
 
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter((task) => task.status === "Completed").length;
+  const overdueTasks = tasks.filter((task) => {
+    const currentDate = new Date();
+    const dueDate = new Date(task.dueDateTime);
+    return task.status !== "Completed" && dueDate < currentDate;
+  }).length;
+
+  const percentage= Math.floor((completedTasks / totalTasks) * 100)
+
+  const completionPercentage = totalTasks === 0 ? 0 : percentage;
+
   const filteredTasks = tasks.filter((task) => {
     const lowerCaseSearch = searchInput.toLowerCase();
     const taskTitle = task.title.toLowerCase();
@@ -73,8 +85,14 @@ export const Tasks = () => {
   const compareDueDate = (taskA, taskB) => {
     const dateA = new Date(taskA.dueDateTime).getTime();
     const dateB = new Date(taskB.dueDateTime).getTime();
-
-    if (dueDateSort === "asc") {
+    
+    if (taskA.status === "Completed" && taskB.status === "Completed") {
+      return 0;
+    } else if (taskA.status === "Completed") {
+      return 1;
+    } else if (taskB.status === "Completed") {
+      return -1;
+    } else if (dueDateSort === "asc") {
       return dateA - dateB;
     } else if (dueDateSort === "desc") {
       return dateB - dateA;
@@ -84,8 +102,14 @@ export const Tasks = () => {
 
   const comparePriority = (taskA, taskB) => {
     const priorityOrder = { Low: 0, Medium: 10, High: 20 };
-
-    if (prioritySort === "asc") {
+    
+    if (taskA.status === "Completed" && taskB.status === "Completed") {
+      return 0;
+    } else if (taskA.status === "Completed") {
+      return 1;
+    } else if (taskB.status === "Completed") {
+      return -1;
+    }else if (prioritySort === "asc") {
       return priorityOrder[taskA.priority] - priorityOrder[taskB.priority];
     } else if (prioritySort === "desc") {
       return priorityOrder[taskB.priority] - priorityOrder[taskA.priority];
@@ -180,6 +204,21 @@ export const Tasks = () => {
         >
           Priority Desc
         </Button>
+      </Flex>
+
+      <Flex justify="center" p={4}>
+        <Box>
+          <strong>Total Tasks:</strong> {totalTasks}
+        </Box>
+        <Box ml={4}>
+          <strong>Completed Tasks:</strong> {completedTasks}
+        </Box>
+        <Box ml={4}>
+          <strong>Overdue Tasks:</strong> {overdueTasks}
+        </Box>
+        <Box ml={4}>
+          <strong>Completion Percentage:</strong> {completionPercentage}%
+        </Box>
       </Flex>
 
       {filteredAndSortedTasks.length > 0 && (
