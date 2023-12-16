@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const { connection } = require("./connection");
-const { userRouter } = require("./Routes/user.routes");
+const { userRouter } = require("./routes/user.routes");
 const { taskRouter } = require("./routes/task.routes");
-// const { projectRouter } = require("./routes/project.routes");
+const { projectRouter } = require("./routes/project.routes");
 
 require("dotenv").config();
 
@@ -17,7 +17,7 @@ app.use(cors());
 
 app.use("/users", userRouter);
 app.use("/tasks", taskRouter);
-// app.use("/project", projectRouter);
+app.use("/projects", projectRouter);
 
 app.get("/", (req, res) => {
   try {
