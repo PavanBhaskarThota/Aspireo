@@ -28,7 +28,7 @@ export const reducer= (state = initialState, { type, payload }) => {
         return {...state, isLoading:false, isError:false}  
 
       case GETTASKS_SUCCESS:
-        return {...state, isLoading:false, isError:false, tasks:payload}  
+        return {...state, isLoading:false, isError:false, tasks:payload || []}  
 
      default:
       return state

@@ -1,9 +1,11 @@
 
 const express = require("express");
 const { TaskModel } = require("../model/task.model");
+const { authMiddleware } = require("../middlewares/auth.middleware");
 
 const taskRouter = express.Router();
 
+taskRouter.use(authMiddleware)
 
 
 taskRouter.post('/add',async (req, res) => {
@@ -20,13 +22,15 @@ taskRouter.post('/add',async (req, res) => {
 
 taskRouter.get('/', async (req, res) => {
   try {
-    const allTasks = await TaskModel.find({});
+    // console.log(req.body)
+    const allTasks = await TaskModel.find({userId:req.body.userId});
     res.status(200).send({ success: true, data: allTasks });
   } catch (error) {
     console.error('Error fetching tasks:', error);
     res.status(400).send({ success: false, error: 'Internal Server Error' });
   }
 });
+
 
 
 taskRouter.patch('/update/:taskId', async (req, res) => {
