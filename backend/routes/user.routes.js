@@ -1,10 +1,38 @@
-const express = require("express");
-const bcrypt=require("bcrypt");
-const jwt=require("jsonwebtoken");
-const { userModel } = require("../model/user.model");
-const {  BlackListModel } = require("../model/blacklist.model");
+// const express = require("express");
+// const bcrypt=require("bcrypt");
+// const jwt=require("jsonwebtoken");
+// const { userModel } = require("../model/user.model");
+// const {  BlackListModel } = require("../model/blacklist.model");
 
-const userRouter = express.Router();
+// const userRouter = express.Router();
+// <<<<<<< fp11_100-day_5
+// userRouter.post("/registration",async(req,res)=>{
+//   const{email,password,confirmPassword,userName}=req.body
+//   console.log(req.body)
+// try {
+//   const user= await userModel.findOne({email})
+//   console.log(user)
+//   if(user){
+//       res.status(400).send({ message: "User already exists" });
+//   }
+//   else{
+//       if(password===confirmPassword){
+//            bcrypt.hash(password, 5,async(err,hash)=>{
+//           console.log(hash)
+//           if(hash){
+//           const User= new userModel({email,userName,password:hash})
+//           await User.save()
+//           res.status(200).send({ message: "User created" });
+//           }
+//           if(err){
+//               res.send(err)
+//           }
+//           })
+//       }
+//       else{
+//       res.status(400).send({ message: 'Password does not match.' })
+//       }
+// =======
 
 // userRouter.post("/registration",async(req,res)=>{
 //   const{email,password,confirmPassword,userName}=req.body
@@ -33,6 +61,7 @@ const userRouter = express.Router();
 //       else{
 //       res.status(400).send({ message: 'Password does not match.' })
 //       }
+
      
 //   }
 // }
