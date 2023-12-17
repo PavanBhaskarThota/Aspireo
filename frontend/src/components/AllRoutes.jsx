@@ -9,6 +9,8 @@ import { Projects } from '../pages/Projects'
 
 
 
+
+
 export const AllRoutes = () => {
   return (
     <div>
@@ -16,12 +18,16 @@ export const AllRoutes = () => {
             <Route path='/' element={<HomePage/>}></Route>
             <Route path='/tasks' element={<Tasks/>}></Route>
             <Route path='/about' element={<AboutPage/>}></Route>
-            <Route path='/admin' element={<AdminPage/>}></Route>
+
+            <Route path="/admin/*" element={<AdminPage />}/>
+         
+         
             <Route path='/login' element={<LoginPage/>}></Route>
 
             <Route path='/signup' element={<LoginPage/>}></Route>
 
             <Route path='/projects' element={<Projects/>}></Route>
+
 
         </Routes>
     </div>
