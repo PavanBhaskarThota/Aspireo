@@ -111,6 +111,7 @@ export const Navbar = () => {
         <Link to="/admin">Admin</Link>
         <Link to="/about">About</Link>
         <Link to="/signup">Signup</Link>
+        
       </Flex>
       {/* <Spacer /> */}
 
@@ -127,7 +128,7 @@ export const Navbar = () => {
             color: "white",
           }}
         >
-          <Link to="/login">Login</Link>
+          <Link to="/login">Register</Link>
         </Button>
       </Box>
     </Flex>
