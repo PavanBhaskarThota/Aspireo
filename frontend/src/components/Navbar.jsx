@@ -63,6 +63,8 @@ export const Navbar = () => {
                   <Link to="/about">About</Link>
                   <Link to="/signup">Signup</Link>
                   <Link to="/login">Login</Link>
+                  <Link to="/projects">Projects</Link>
+               
                 </VStack>
               </DrawerBody>
             </DrawerContent>
@@ -105,6 +107,7 @@ export const Navbar = () => {
       >
         <Link to="/">Home</Link>
         <Link to="/tasks">Tasks</Link>
+        <Link to="/projects">Projects</Link>
         <Link to="/admin">Admin</Link>
         <Link to="/about">About</Link>
         <Link to="/signup">Signup</Link>

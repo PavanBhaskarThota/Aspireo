@@ -14,15 +14,15 @@ export const Footer = () => {
       <Flex
         w={"80%"}
         m={"auto"}
-        pt={20}
+        pt={10}
         justifyContent={"space-between"}
-        fontSize={"lg"}
+        fontSize={"md"}
       >
-        <Box w={"20%"}>
+        <Box w={"15%"}>
           <Image src={Aspireo} w={"80%"} borderRadius={'40px'}/>
           <Text
             display={"flex"}
-            fontSize={"xl"}
+            fontSize={"lg"}
             alignItems={"center"}
             gap={5}
             mt={5}
@@ -32,7 +32,7 @@ export const Footer = () => {
           </Text>
           <Text
             display={"flex"}
-            fontSize={"xl"}
+            fontSize={"lg"}
             alignItems={"center"}
             gap={5}
             mt={5}
@@ -41,7 +41,7 @@ export const Footer = () => {
             <Icon as={MdEmail} w={"25px"} h={"25px"} /> hello@Aspireo.com
           </Text>
         </Box>
-        <Box display={"flex"} flexDirection={"column"} gap={5}>
+        <Box display={"flex"} flexDirection={"column"} gap={3}>
           <Heading>Company</Heading>
           <Text>About Us</Text>
           <Text>Blog</Text>
@@ -50,21 +50,21 @@ export const Footer = () => {
           <Text>Careers</Text>
           <Text>Support</Text>
         </Box>
-        <Box display={"flex"} flexDirection={"column"} gap={5}>
+        <Box display={"flex"} flexDirection={"column"} gap={3}>
           <Heading>Teams</Heading>
           <Text>Marketing</Text>
           <Text>Agencies</Text>
           <Text>Project Managment</Text>
           <Text>Product Development</Text>
         </Box>
-        <Box display={"flex"} flexDirection={"column"} gap={5}>
+        <Box display={"flex"} flexDirection={"column"} gap={3}>
           <Heading>Industries</Heading>
           <Text>Healthcare</Text>
           <Text>Real Estate</Text>
           <Text>Accounting</Text>
           <Text>Manufacturing</Text>
         </Box>
-        <Box display={"flex"} flexDirection={"column"} gap={5}>
+        <Box display={"flex"} flexDirection={"column"} gap={3}>
           <Heading>Alternatives</Heading>
           <Text>Top Project Management</Text>
           <Text>Microsoft Project</Text>
@@ -79,10 +79,10 @@ export const Footer = () => {
         alignItems={"center"}
         h={"100px"}
         bg={"#06113C"}
-        mt={10}
+        mt={6}
         color={"white"}
       >
-        <Flex w={"30%"} justifyContent={"space-around"} fontSize={"xl"}>
+        <Flex w={"30%"} justifyContent={"space-around"} fontSize={"lg"}>
           <Text>Privacy Policy</Text>
           <Text>Security Overview</Text>
           <Text>Help Docs</Text>
@@ -90,13 +90,13 @@ export const Footer = () => {
 
         <Flex w={"15%"} justifyContent={"space-around"}>
           <Link href="https://in.linkedin.com/" target="blank">
-            <Icon as={ImLinkedin} w={"40px"} h={"40px"} />
+            <Icon as={ImLinkedin} w={"30px"} h={"30px"} />
           </Link>
           <Link href="https://www.facebook.com/" target="blank">
-            <Icon as={FaFacebookSquare} w={"40px"} h={"40px"} />
+            <Icon as={FaFacebookSquare} w={"30px"} h={"30px"} />
           </Link>
           <Link href="https://twitter.com/i/flow/login" target="blank">
-            <Icon as={FaTwitter} w={"40px"} h={"40px"} />
+            <Icon as={FaTwitter} w={"30px"} h={"30px"} />
           </Link>
         </Flex>
       </Flex>

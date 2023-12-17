@@ -16,16 +16,18 @@ import {
 } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 
+const initialState= {
+  title: "",
+  description: "",
+  dueDateTime: "",
+  priority: "Medium",
+  tags: "",
+  status: "Not Started",
+}
+
 const AddTask = ({ isOpen, onClose, onAddTask }) => {
   const [step, setStep] = useState(1);
-  const [taskData, setTaskData] = useState({
-    title: "",
-    description: "",
-    dueDateTime: "",
-    priority: "Medium",
-    tags: "",
-    status: "Not Started",
-  });
+  const [taskData, setTaskData] = useState(initialState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +49,7 @@ const AddTask = ({ isOpen, onClose, onAddTask }) => {
   const handleAddTask = () => {
     onAddTask(taskData);
     onClose();
+    setTaskData(initialState)
   };
 
   const modalStyle = css`
