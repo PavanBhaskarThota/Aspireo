@@ -1,9 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const morgan = require('morgan')
 const { connection } = require("./connection");
-const { userRouter } = require("./Routes/user.routes");
+
 const { taskRouter } = require("./routes/task.routes");
 const { projectRouter } = require("./routes/project.routes");
+const { userRouter } = require("./routes/user.routes");
+const LogModel = require("./model/log.model");
 
 require("dotenv").config();
 
@@ -14,9 +17,23 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use(morgan('common', {
+  stream: {
+    write: async (log) => {
+      try {
+        await LogModel.findOneAndUpdate({}, { $push: { logs: log } }, { upsert: true });
+      } catch (err) {
+        console.error('Error saving log to MongoDB:', err);
+      }
+    },
+  },
+}));
+
+
+
 app.use("/users", userRouter);
 app.use("/tasks", taskRouter);
-app.use("/project", projectRouter);
+app.use("/projects", projectRouter);
 
 app.get("/", (req, res) => {
   try {
@@ -34,3 +51,4 @@ app.listen(PORT, async () => {
     console.log("Index Error", error.message);
   }
 });
+
