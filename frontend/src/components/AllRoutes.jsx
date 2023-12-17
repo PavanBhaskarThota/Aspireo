@@ -6,6 +6,8 @@ import { Tasks } from '../pages/Tasks'
 import { AboutPage } from '../pages/AboutPage'
 
 
+
+
 export const AllRoutes = () => {
   return (
     <div>
@@ -13,7 +15,9 @@ export const AllRoutes = () => {
             <Route path='/' element={<HomePage/>}></Route>
             <Route path='/tasks' element={<Tasks/>}></Route>
             <Route path='/about' element={<AboutPage/>}></Route>
-            <Route path='/admin' element={<AdminPage/>}></Route>
+            <Route path="/admin/*" element={<AdminPage />}/>
+         
+         
         </Routes>
     </div>
   )
