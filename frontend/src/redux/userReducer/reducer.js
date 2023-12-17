@@ -6,7 +6,8 @@ const intialState={
     token:"",
     message:"",
     error:false,
-
+    user:'',
+    isLoggedIn:false
 }
  
 export const reducer= (state = intialState, { type, payload }) =>{
@@ -16,7 +17,7 @@ export const reducer= (state = intialState, { type, payload }) =>{
     case LOGIN_FAILURE||SIGNUP_FAILURE:
         return {...state,loading:false,error:true}
     case LOGIN_SUCCESS:
-        return{...state,loading:false,token:payload.token,message:payload.message}
+        return{...state,loading:false,token:payload.token,message:payload.message, user:payload.user,isLoggedIn:true}
     case SIGNUP_SUCCESS:
          return{...state,loading:false,message:payload}
     default:

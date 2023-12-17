@@ -152,7 +152,7 @@ export const HomePage = () => {
 
       <Flex w={"80%"} m={"auto"} mt={10} mb={10} gap={10}>
         <Heading size={"3xl"} w={"50%"} lineHeight={"80px"}>
-          No matter your workflow, you can build it in Aspireo
+          No matter your workflow,you can build it in Aspireo
         </Heading>
         <Text fontSize={"3xl"} w={"40%"} m={"auto"} color={"gray"}>
           End silos with a unique platform that connects every part of your

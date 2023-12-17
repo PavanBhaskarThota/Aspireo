@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const projectSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String },
-  collaborators: [String],
+  colleborators: [String],
   tasks: [
     {
       title: { type: String },
@@ -11,6 +11,7 @@ const projectSchema = new mongoose.Schema({
       collaboratorId:{ type: String } 
     }
   ],
+  chats:[String]
 });
 
 const ProjectModel = mongoose.model('Project', projectSchema);

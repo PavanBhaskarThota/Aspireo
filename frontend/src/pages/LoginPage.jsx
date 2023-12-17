@@ -17,7 +17,7 @@ export const LoginPage = () => {
     const[email,setemail]=useState("")
     const[userName,setname]=useState("")
     const[confirmPassword,setconfirmPassword]=useState("")
-    
+
     const toggleForm = (formType) => {
       if (formType === 'login') {
         setShowLoginForm(true);
@@ -53,13 +53,18 @@ export const LoginPage = () => {
     }
     const handle = (e) => {
       e.preventDefault();
+
       let obj={
         email,
         password,
-        userName,
         confirmPassword
       }
-      if(email===""||password===""||userName===""||confirmPassword===""){
+     obj.userName= name;
+
+    //  console.log(obj)
+
+      if(email===""||password===""||name===""||confirmPassword===""){
+
         toast({
           title: "Error",
           description: "Please fill out all fields.",
