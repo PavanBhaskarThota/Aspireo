@@ -25,12 +25,15 @@ export const Tasks = () => {
   const { tasks, isLoading, isError } = useSelector(
     (store) => store.taskReducer
   );
+
+  const token= localStorage.getItem("token");
+
   const dispatch = useDispatch();
 
   console.log(tasks, isLoading, isError);
 
   const handleAddTask = (taskData) => {
-    dispatch(addTaskFun(taskData));
+    dispatch(addTaskFun(taskData,token));
     setRefresh(!refresh);
   };
 
@@ -41,17 +44,18 @@ export const Tasks = () => {
 
   const handleUpdateTask = (updatedTaskData, taskId) => {
     setUpdateTaskModalOpen(false);
-    dispatch(updateTaskFun(updatedTaskData, taskId));
+    dispatch(updateTaskFun(updatedTaskData, taskId,token));
     setRefresh(!refresh);
   };
 
   const handleDeleteTask = (taskId) => {
     // console.log(taskId);
-    dispatch(deleteTaskFun(taskId));
+    dispatch(deleteTaskFun(taskId,token));
     setRefresh(!refresh);
   };
 
   const totalTasks = tasks.length;
+  
   const completedTasks = tasks.filter((task) => task.status === "Completed").length;
   const overdueTasks = tasks.filter((task) => {
     const currentDate = new Date();
@@ -120,7 +124,7 @@ export const Tasks = () => {
   console.log(dueDateSort, prioritySort);
 
   useEffect(() => {
-    dispatch(getTasksFun());
+    dispatch(getTasksFun(token));
   }, [dispatch, refresh]);
 
   const filteredAndSortedTasks = filteredTasks.slice();
