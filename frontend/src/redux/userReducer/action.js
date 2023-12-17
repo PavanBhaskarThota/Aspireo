@@ -2,7 +2,7 @@ import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_FAILURE, SIGNUP_REQ
 
 export const Login=(data,toast)=>(dispatch)=>{
     dispatch({type:LOGIN_REQUEST})
-    fetch("http://localhost:9800/login",{
+    fetch("http://localhost:7070/users/login",{
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(data),
@@ -13,8 +13,8 @@ export const Login=(data,toast)=>(dispatch)=>{
         if(res.message==='Login successful'){
            m=true
         }
-        {m?toast({title:'success',description: res.message,status: 'success', duration: 3000,  isClosable: true,position:"top",}):
-                 toast({ title: "Error",description: res.message,status: 'error', duration: 3000, isClosable: true,position:"top", })}
+        {m?toast({title:'success',description: res.message,status: 'success', duration: 2000,  isClosable: true,position:"top",}):
+                 toast({ title: "Error",description: res.message,status: 'error', duration: 2000, isClosable: true,position:"top", })}
                 
         dispatch({type:SIGNUP_SUCCESS,payload:res.message})
          localStorage.setItem("token",res.token)
@@ -29,7 +29,7 @@ export const Login=(data,toast)=>(dispatch)=>{
 
 export const SignUp=(data,toast)=>(dispatch)=>{
       dispatch({type:SIGNUP_REQUEST})
-    fetch("http://localhost:9800/registration",{
+    fetch("http://localhost:7070/users/registration",{
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(data),
@@ -41,8 +41,8 @@ export const SignUp=(data,toast)=>(dispatch)=>{
          if(res.message==='User created'){
             m=true
          }
-         {m?toast({title:'success',description: res.message,status: 'success', duration: 3000,  isClosable: true,position:"top",}):
-                  toast({ title: "Error",description: res.message,status: 'error', duration: 3000, isClosable: true,position:"top", })}
+         {m?toast({title:'success',description: res.message,status: 'success', duration: 2000,  isClosable: true,position:"top",}):
+                  toast({ title: "Error",description: res.message,status: 'error', duration: 2000, isClosable: true,position:"top", })}
                  
          dispatch({type:SIGNUP_SUCCESS,payload:res.message})
     })

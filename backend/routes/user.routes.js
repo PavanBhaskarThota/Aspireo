@@ -6,7 +6,7 @@ const {  BlackListModel } = require("../model/blacklist.model");
 
 const userRouter = express.Router();
 userRouter.post("/registration",async(req,res)=>{
-  const{email,password,confirmPassword,name}=req.body
+  const{email,password,confirmPassword,userName}=req.body
   console.log(req.body)
 try {
   const user= await userModel.findOne({email})
@@ -19,7 +19,7 @@ try {
            bcrypt.hash(password, 5,async(err,hash)=>{
           console.log(hash)
           if(hash){
-          const User= new userModel({email,name,password:hash})
+          const User= new userModel({email,userName,password:hash})
           await User.save()
           res.status(200).send({ message: "User created" });
           }
