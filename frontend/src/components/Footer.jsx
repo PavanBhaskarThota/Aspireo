@@ -12,17 +12,17 @@ export const Footer = () => {
   return (
     <Box bg={'blue.50'} mt={10}>
       <Flex
-        w={"80%"}
+        w={"90%"}
         m={"auto"}
         pt={10}
         justifyContent={"space-between"}
-        fontSize={"md"}
+        fontSize={"sm"}
       >
-        <Box w={"15%"}>
-          <Image src={Aspireo} w={"80%"} borderRadius={'40px'}/>
+        <Box w={"20%"}>
+          <Image src={Aspireo} w={"50%"} borderRadius={'40px'}/>
           <Text
             display={"flex"}
-            fontSize={"lg"}
+            fontSize={"md"}
             alignItems={"center"}
             gap={5}
             mt={5}
@@ -32,7 +32,7 @@ export const Footer = () => {
           </Text>
           <Text
             display={"flex"}
-            fontSize={"lg"}
+            fontSize={"md"}
             alignItems={"center"}
             gap={5}
             mt={5}
@@ -41,7 +41,7 @@ export const Footer = () => {
             <Icon as={MdEmail} w={"25px"} h={"25px"} /> hello@Aspireo.com
           </Text>
         </Box>
-        <Box display={"flex"} flexDirection={"column"} gap={3}>
+        <Box display={"flex"} flexDirection={"column"} gap={2}>
           <Heading>Company</Heading>
           <Text>About Us</Text>
           <Text>Blog</Text>
@@ -50,21 +50,21 @@ export const Footer = () => {
           <Text>Careers</Text>
           <Text>Support</Text>
         </Box>
-        <Box display={"flex"} flexDirection={"column"} gap={3}>
+        <Box display={"flex"} flexDirection={"column"} gap={2}>
           <Heading>Teams</Heading>
           <Text>Marketing</Text>
           <Text>Agencies</Text>
           <Text>Project Managment</Text>
           <Text>Product Development</Text>
         </Box>
-        <Box display={"flex"} flexDirection={"column"} gap={3}>
+        {/* <Box display={"flex"} flexDirection={"column"} gap={2}>
           <Heading>Industries</Heading>
           <Text>Healthcare</Text>
           <Text>Real Estate</Text>
           <Text>Accounting</Text>
           <Text>Manufacturing</Text>
-        </Box>
-        <Box display={"flex"} flexDirection={"column"} gap={3}>
+        </Box> */}
+        <Box display={"flex"} flexDirection={"column"} gap={2}>
           <Heading>Alternatives</Heading>
           <Text>Top Project Management</Text>
           <Text>Microsoft Project</Text>
@@ -77,12 +77,12 @@ export const Footer = () => {
       <Flex
         justifyContent={"space-between"}
         alignItems={"center"}
-        h={"100px"}
+        h={"80px"}
         bg={"#06113C"}
         mt={6}
         color={"white"}
       >
-        <Flex w={"30%"} justifyContent={"space-around"} fontSize={"lg"}>
+        <Flex w={"30%"} justifyContent={"space-around"} fontSize={"sm"} pl={5}>
           <Text>Privacy Policy</Text>
           <Text>Security Overview</Text>
           <Text>Help Docs</Text>

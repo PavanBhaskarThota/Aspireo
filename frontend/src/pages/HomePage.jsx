@@ -29,7 +29,7 @@ export const HomePage = () => {
     <>
       <Box
         //bgGradient="linear(to-r, #ffffff,#ffffff ,#ffffff, #e5e7f0 ,#b0bbe4, #4573D2)"
-        pt={"150px"}
+        pt={"80px"}
       >
         <Box w={"70%"} m={"auto"} textAlign={"center"} pb={"100px"}>
           <Heading fontWeight={"400"} size={"2xl"} lineHeight={"70px"} mb={10}>
@@ -40,24 +40,33 @@ export const HomePage = () => {
             </span>
             – Where Vision Meets Project, and Dreams Take Flight
           </Heading>
-          <Text m={10} fontSize={"2xl"}>
+          <Text m={10} fontSize={"xl"}>
             Keep everything in the same place — even if your team isn’t.
           </Text>
           <Flex
-            w={"50%"}
-            m={'auto'}
+            w={"70%"}
+            m={"auto"}
             gap={2}
             justifyContent={"space-around"}
             alignItems={"center"}
             pt={10}
           >
-            <Input placeholder="email" size="lg" w={"50%"} outline="#4573D2" border={'2px solid #06113C'} h={'60px'} borderRadius={'30px'}/>
+            <Input
+              placeholder="email"
+              size="lg"
+              
+              w={"50%"}
+              outline="#4573D2"
+              border={"2px solid #06113C"}
+              h={"50px"}
+              borderRadius={"30px"}
+            />
             <Button
-              h="60px"
+              h="50px"
               bgColor={"#06113C"}
               color={"white"}
               borderRadius={"30px"}
-              w="40%"
+              w="35%"
               _hover={{
                 bg: "white",
                 color: "black",
@@ -123,15 +132,15 @@ export const HomePage = () => {
         </Box>
         <Flex gap={20} pt={"100px"} w={"90%"} m={"auto"}>
           <Box w={"50%"} textAlign={"left"}>
-            <Heading size={"2xl"} lineHeight={"60px"} mb={10}>
+            <Heading size={"xl"} lineHeight={"60px"} mb={10}>
               The one place for all your projects and team collaboration
             </Heading>
-            <Text mt={10} fontSize={"xl"}>
+            <Text mt={10} fontSize={"lg"}>
               <span style={{ fontWeight: "bold" }}>Earlier : </span>
               Projects were scattered, it was hard to know where things stood,
               communication gaps existed, and people felt stressed.
             </Text>
-            <Text mt={10} fontSize={"xl"}>
+            <Text mt={10} fontSize={"lg"}>
               <span style={{ fontWeight: "bold" }}> With Aspireo :</span>{" "}
               Everything is organized, project progress is everyone's on the
               same page, and people feel at ease.
@@ -151,16 +160,16 @@ export const HomePage = () => {
       </Box>
 
       <Flex w={"80%"} m={"auto"} mt={10} mb={10} gap={10}>
-        <Heading size={"3xl"} w={"50%"} lineHeight={"80px"}>
+        <Heading size={"2xl"} w={"50%"} lineHeight={"60px"}>
           No matter your workflow,you can build it in Aspireo
         </Heading>
-        <Text fontSize={"3xl"} w={"40%"} m={"auto"} color={"gray"}>
+        <Text fontSize={"2xl"} w={"40%"} m={"auto"} color={"gray"}>
           End silos with a unique platform that connects every part of your
           work.
         </Text>
       </Flex>
 
-      <Box w={"90%"} m={"auto"} mt={"100px"} mb={"50px"}>
+      <Box w={"85%"} m={"auto"} mt={"70px"} mb={"50px"}>
         <Tabs isFitted variant="enclosed">
           <TabList mb="1em">
             <Tab fontSize={"2xl"}>Tasks & Projects</Tab>
@@ -177,43 +186,7 @@ export const HomePage = () => {
         </Tabs>
       </Box>
 
-      <Box w={"90%"} m={"auto"}>
-        <Button
-          onClick={onToggle}
-          mt={10}
-          h={"60px"}
-          bg={"#4573D2"}
-          color={"white"}
-        >
-          Click Me
-        </Button>
-        <Collapse in={isOpen} animateOpacity>
-          <Box
-            p="40px"
-            color="white"
-            mt="4"
-            bg="#4573D2"
-            rounded="md"
-            shadow="md"
-            _hover={{
-              bg: "white",
-              color: "black",
-              border: "1px solid #4573D2",
-              outline: "blue",
-            }}
-          >
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Temporibus in sit quisquam unde ullam repellendus nemo dolor
-              blanditiis nisi accusantium. Quae asperiores nobis repellat
-              tempora alias. Explicabo voluptates nulla doloribus.
-            </p>
-          </Box>
-        </Collapse>
-      </Box>
-
-      <Footer/>
-      
+      <Footer />
     </>
   );
 };
