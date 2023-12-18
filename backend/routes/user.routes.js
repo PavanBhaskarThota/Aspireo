@@ -139,6 +139,8 @@ const userRouter = express.Router();
 
 //   });
 
+require ("dotenv").config()
+
 userRouter.post("/registration", async (req, res) => {
   const { email, password, confirmPassword } = req.body;
 
@@ -176,7 +178,19 @@ userRouter.post("/login", async (req, res) => {
   try {
 
     if(email==='admin@gmail.com' && password==="admin"){
-      return res.status(200).send({ message: "redirects to Admin" });
+      const token = jwt.sign({ userId: "658021c5ad487f7672c0c4f1"}, process.env.KEY, {
+        expiresIn: "1d",
+      });
+
+      console.log(token,"adminlogin")
+
+
+      if (token) {
+        return res
+          .status(200)
+          .send({ message: "redirects to Admin", token });
+      }
+      // return res.status(200).send({ message: "redirects to Admin" });
     }
 
     const existinguser = await userModel.findOne({ email });
