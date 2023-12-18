@@ -24,6 +24,18 @@ taskRouter.get('/', async (req, res) => {
   try {
     // console.log(req.body)
     const allTasks = await TaskModel.find({userId:req.body.userId});
+   
+    res.status(200).send({message:"All Tasks", data: allTasks });
+  } catch (error) {
+    console.error('Error fetching tasks:', error);
+    res.status(400).send({message:"Internal Server Error"});
+  }
+});
+taskRouter.get('/admintasks', async (req, res) => {
+  try {
+    // console.log(req.body)
+    const allTasks = await TaskModel.find({});
+    console.log(allTasks)
     res.status(200).send({message:"All Tasks", data: allTasks });
   } catch (error) {
     console.error('Error fetching tasks:', error);

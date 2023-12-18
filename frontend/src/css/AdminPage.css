@@ -7,7 +7,7 @@ body {
   
   .admin-container {
     display: flex;
-    height: 100vh; /* Full height of the viewport */
+    height:300vh; /* Full height of the viewport */
     position: relative;
     
   }

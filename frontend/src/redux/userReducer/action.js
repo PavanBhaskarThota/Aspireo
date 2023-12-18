@@ -120,7 +120,11 @@ export const Login = (data, toast,navigate) => (dispatch) => {
           position: "top",
         });
       }else if (res.message==="redirects to Admin") {
-
+        // message: "redirects to Admin", token 
+        console.log(res.token,"checktoken")
+        // localStorage.setItem("token", res.message);
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("supriya", "supriya");
         dispatch({ type: ADMINLOGIN_SUCCESS,payload: res });
        
         navigate('/admin');

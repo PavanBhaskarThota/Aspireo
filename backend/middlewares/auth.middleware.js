@@ -36,7 +36,7 @@ require("dotenv").config();
 const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1] || null;
 
-//   console.log(token, "token");
+  console.log(token, "token");
 
   try {
     if (token) {
@@ -48,7 +48,7 @@ const authMiddleware = async (req, res, next) => {
         return res.status(400).send({ msg: "Please Login !!" });
       }
 
-      jwt.verify(token, process.env.key, async (err, result) => {
+      jwt.verify(token, process.env.KEY, async (err, result) => {
         try {
           if (result) {
             req.body.userId = result.userId;
