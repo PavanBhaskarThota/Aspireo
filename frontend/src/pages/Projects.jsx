@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Box, Button, Flex, useToast, useToken } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  useToast,
+  useToken,
+} from "@chakra-ui/react";
 import AddProject from "../components/AddProject";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,6 +19,7 @@ import {
 import { useEffect } from "react";
 import ProjectCard from "../components/ProjectCard";
 import AddCollaborators from "../components/AddCollaborator";
+import styled from "styled-components";
 
 export const Projects = () => {
   const [isAddProjectModalOpen, setAddProjectModalOpen] = useState(false);
@@ -22,7 +31,7 @@ export const Projects = () => {
   const { user } = useSelector((store) => store.userReducer);
   const { projects, users } = useSelector((store) => store.projectReducer);
   const dispatch = useDispatch();
-  const toast= useToast()
+  const toast = useToast();
 
   console.log(projects, "projects");
   const userData = JSON.parse(localStorage.getItem("user"));
@@ -66,7 +75,7 @@ export const Projects = () => {
 
     // console.log(patchProject, "hi", selectedProject._id);
 
-    dispatch(updateProjectFun(patchProject, userId, token,toast));
+    dispatch(updateProjectFun(patchProject, userId, token, toast));
 
     setAddCollaboratorModalOpen(false);
     setRefresh(!refresh);
@@ -80,17 +89,39 @@ export const Projects = () => {
   // console.log(projects,users);
 
   return (
-    <div>
-      <Box m="auto">
-        <Button onClick={() => setAddProjectModalOpen(true)}>
-          Add Project
-        </Button>
-        <AddProject
-          isOpen={isAddProjectModalOpen}
-          onClose={() => setAddProjectModalOpen(false)}
-          onAddProject={handleAddProject}
-        />
+    <DIV>
+      <Box w={"20%"} borderRight={"1px solid lightgray"} >
 
+        <Box w={"20%"} position={"fixed"}>
+        {/* <Heading textAlign={"center"} >{userData.userName}</Heading> */}
+          {" "}
+          <Divider/>
+          <Heading textAlign={"center"} size={'lg'} > All Projects</Heading>
+          <Button
+            onClick={() => setAddProjectModalOpen(true)}
+            display={"block"}
+            m={"auto"}
+            borderRadius={"30px"}
+            mt={10}
+            color={"white"}
+            bg={"#06113C"}
+            _hover={{
+              border:'1px solid #06113C',
+              bg:'white',
+              color:'black'
+            }}
+          >
+            + Create New Project
+          </Button>
+          <AddProject
+            isOpen={isAddProjectModalOpen}
+            onClose={() => setAddProjectModalOpen(false)}
+            onAddProject={handleAddProject}
+          />
+        </Box>
+      </Box>
+
+      <Box m="auto" w={"80%"}>
         {projects.length > 0 &&
           projects.map((project) => (
             <ProjectCard
@@ -112,6 +143,10 @@ export const Projects = () => {
           onAddCollaborator={handleAddCollaborator}
         />
       </Box>
-    </div>
+    </DIV>
   );
 };
+
+const DIV = styled.div`
+  display: flex;
+`;

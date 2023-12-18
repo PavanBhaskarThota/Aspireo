@@ -161,7 +161,7 @@ export const Tasks = () => {
 
   return (
     <DIV>
-      <Box w={"20%"} borderRight={"1px solid"} position={"relative"}>
+      <Box w={"20%"} borderRight={"1px solid"} position={"relative"} minH={"100hv"}>
         <Box w={"20%"} position={"fixed"}>
           <Heading textAlign={"center"} mt={5} w={"90%"}>
             {" "}

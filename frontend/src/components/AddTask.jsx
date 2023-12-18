@@ -53,12 +53,16 @@ const AddTask = ({ isOpen, onClose, onAddTask }) => {
   };
 
   const modalStyle = css`
-    backdrop-filter: blur(40px);
+    backdrop-filter: blur(2px);
     background-color: rgba(224, 224, 227, 0.2);
     color: #ee1515;
   `;
   const modalStep = css`
+  
+    margin-top: 130px;
+    border-radius: 30px;
     backdrop-filter: blur(50px);
+    padding: 10px;
     background-color: rgba(255, 255, 255, 0.808);
     color: #000000;
   `;
