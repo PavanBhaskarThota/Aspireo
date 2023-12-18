@@ -16,6 +16,8 @@ import {
   Icon,
   Text,
   useToast,
+  Radio,
+  Link,
 } from "@chakra-ui/react";
 
 import { IoIosArrowForward } from "react-icons/io";
@@ -51,7 +53,7 @@ export const Tasks = () => {
   console.log(tasks, isLoading, isError);
 
   const handleAddTask = (taskData) => {
-    dispatch(addTaskFun(taskData, token,toast));
+    dispatch(addTaskFun(taskData, token, toast));
     setRefresh(!refresh);
   };
 
@@ -62,13 +64,13 @@ export const Tasks = () => {
 
   const handleUpdateTask = (updatedTaskData, taskId) => {
     setUpdateTaskModalOpen(false);
-    dispatch(updateTaskFun(updatedTaskData, taskId, token,toast));
+    dispatch(updateTaskFun(updatedTaskData, taskId, token, toast));
     setRefresh(!refresh);
   };
 
   const handleDeleteTask = (taskId) => {
     // console.log(taskId);
-    dispatch(deleteTaskFun(taskId, token,toast));
+    dispatch(deleteTaskFun(taskId, token, toast));
     setRefresh(!refresh);
   };
 
@@ -160,266 +162,293 @@ export const Tasks = () => {
   return (
     <DIV>
       <Box w={"20%"} borderRight={"1px solid"} position={"relative"}>
-        <Accordion allowMultiple position={"fixed"} w={"18%"}>
-          <AccordionItem>
-            <AccordionButton>
-              <Box flex="1" textAlign="left" w={"90%"} m={"auto"}>
-                <Heading size={"lg"} letterSpacing={1} fontWeight={"600"}>
-                  Tasks
-                </Heading>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
+        <Box w={"20%"} position={"fixed"}>
+          <Heading textAlign={"center"} mt={5} w={"90%"}>
+            {" "}
+            Tasks
+          </Heading>
+          <Flex justify="center" flexDirection={"column"} gap={2}>
+            <Box display={"flex"} flexDirection={"column"}>
+              {/* <Text>Sort Your tasks</Text> */}
+            </Box>
+            <Button
+              w={"70%"}
+              display={"block"}
+              ml={5}
+              fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
+              bg={dueDateSort === "all" ? "#06113C" : "none"}
+              color={dueDateSort === "all" ? "white" : "black"}
+              fontWeight={"500"}
+              cursor={"pointer"}
+              onClick={() => handleDueDateSort("all")}
+              variant={dueDateSort === "all" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
+              
+            >
+              <Link
+                onClick={() => handlePrioritySort("all")}
+                variant={prioritySort === "all" ? "solid" : "outline"}
+                textDecoration={'none'}
+                // LinkAlign={'center'}
+                
+                // mt={3}
+              >
+                All
+              </Link>
+            </Button>
+            <Text
+              textAlign={"center"}
+              w={"90%"}
+              fontSize={"xl"}
+              fontWeight={"bold"}
+              mt={5}
+            >
+              Sort By Due Date
+            </Text>
+            <Button
+              w={"70%"}
+              display={"block"}
+              ml={5}
+              fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
+              cursor={"pointer"}
+              fontWeight={"500"}
+              bg={dueDateSort === "asc" ? "#06113C" : "none"}
+              color={dueDateSort === "asc" ? "white" : "black"}
+              onClick={() => handleDueDateSort("asc")}
+              variant={dueDateSort === "asc" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
+            >
+              Old Tasks
+            </Button>
+            <Button
+              w={"70%"}
+              display={"block"}
+              ml={5}
+              fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
+              fontWeight={"500"}
+              cursor={"pointer"}
+              bg={dueDateSort === "desc" ? "#06113C" : "none"}
+              color={dueDateSort === "desc" ? "white" : "black"}
+              onClick={() => handleDueDateSort("desc")}
+              variant={dueDateSort === "desc" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
+            >
+              Latest Tasks
+            </Button>
 
-            <AccordionPanel pb={10}>
-              <AccordionItem>
-                <AccordionButton>
-                  <Flex
-                    w={"100%"}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                  >
-                    <Text fontSize={"lg"} fontWeight={"bold"}>
-                      {" "}
-                      All Tasks{" "}
-                    </Text>
-                    <AccordionIcon />
-                  </Flex>
-                </AccordionButton>
-                <AccordionPanel pl={10}>
-                  <Flex
-                    justify="center"
-                    pl={4}
-                    flexDirection={"column"}
-                    gap={2}
-                  >
-                    <Text
-                      fontSize={"lg"}
-                      fontWeight={"500"}
-                      cursor={"pointer"}
-                      onClick={() => handleDueDateSort("all")}
-                      variant={dueDateSort === "all" ? "solid" : "outline"}
-                    >
-                      <Icon as={IoIosArrowForward} /> All
-                    </Text>
-                    <Text
-                      fontSize={"lg"}
-                      cursor={"pointer"}
-                      fontWeight={"500"}
-                      onClick={() => handleDueDateSort("asc")}
-                      variant={dueDateSort === "asc" ? "solid" : "outline"}
-                    >
-                      <Icon as={IoIosArrowForward} />
-                      Due Date Asc
-                    </Text>
-                    <Text
-                      fontSize={"lg"}
-                      fontWeight={"500"}
-                      cursor={"pointer"}
-                      onClick={() => handleDueDateSort("desc")}
-                      variant={dueDateSort === "desc" ? "solid" : "outline"}
-                    >
-                      <Icon as={IoIosArrowForward} />
-                      Due Date Desc
-                    </Text>
-
-                    {/* <Text
-                      fontSize={"lg"}
+            {/* <Button
+                      fontSize={"md"}
                       fontWeight={"500"}
                       cursor={"pointer"}
                       onClick={() => handlePrioritySort("all")}
                       variant={prioritySort === "all" ? "solid" : "outline"}
                     >
-                      <Icon as={IoIosArrowForward} />
+                     
                       All
-                    </Text> */}
-
-                    <Text
-                      fontSize={"lg"}
-                      fontWeight={"500"}
-                      cursor={"pointer"}
-                      onClick={() => handlePrioritySort("asc")}
-                      variant={prioritySort === "asc" ? "solid" : "outline"}
-                    >
-                      <Icon as={IoIosArrowForward} />
-                      Priority Low
-                    </Text>
-                    <Text
-                      fontSize={"lg"}
-                      fontWeight={"500"}
-                      cursor={"pointer"}
-                      onClick={() => handlePrioritySort("desc")}
-                      variant={prioritySort === "desc" ? "solid" : "outline"}
-                    >
-                      <Icon as={IoIosArrowForward} />
-                      Priority High
-                    </Text>
-                  </Flex>
-                </AccordionPanel>
-              </AccordionItem>
-
-              <Flex alignItems={"center"} pl={10}>
-                <Icon as={IoIosArrowForward} />
-                <Text fontSize={"xl"}> Ongoing</Text>
-              </Flex>
-              <Flex alignItems={"center"} pl={10}>
-                <Icon as={IoIosArrowForward} />
-                <Text fontSize={"xl"}> Completed </Text>
-              </Flex>
-            </AccordionPanel>
-          </AccordionItem>
-
-          <AccordionItem>
-            <AccordionButton>
-              <Box flex="1" textAlign="left" w={"90%"} m={"auto"}>
-                <Heading size={"lg"} letterSpacing={1} fontWeight={"600"}>
-                  Projects
-                </Heading>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-
-            <AccordionPanel pb={4}>
-              <Flex justify="center" p={4} flexDirection={"column"} gap={4}>
-                <Button
-                  onClick={() => handlePrioritySort("all")}
-                  variant={prioritySort === "all" ? "solid" : "outline"}
-                >
-                  All
-                </Button>
-
-                <Button
-                  onClick={() => handlePrioritySort("asc")}
-                  variant={prioritySort === "asc" ? "solid" : "outline"}
-                >
-                  Priority Asc
-                </Button>
-                <Button
-                  onClick={() => handlePrioritySort("desc")}
-                  variant={prioritySort === "desc" ? "solid" : "outline"}
-                >
-                  Priority Desc
-                </Button>
-              </Flex>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-      </Box>
-
-      <Box w={"90%"} m={"auto"}>
-        <Flex
-          justifyContent={"space-between"}
-          alignItems={"center"}
-          h={"90px"}
-          p={4}
-          boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
-        >
-          <Box>
-            <Input
-              type="text"
-              w="md"
-              h={"50px"}
-              borderRadius={"30px"}
-              border={"1px solid #06113C"}
-              placeholder="Search tasks..."
-              value={searchInput}
-              onChange={handleSearch}
-            />
-          </Box>
-
-          <Box>
+                    </Button> */}
+            <Text
+              textAlign={"center"}
+              w={"90%"}
+              fontSize={"xl"}
+              fontWeight={"bold"}
+              mt={5}
+            >
+              Sort By Priority
+            </Text>
             <Button
-              onClick={() => setAddTaskModalOpen(true)}
-              border={"1px solid #06113C"}
-              borderRadius={"30px"}
+              w={"70%"}
+              display={"block"}
+              ml={5}
+              fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
+              fontWeight={"500"}
+              cursor={"pointer"}
+              bg={prioritySort === "asc" ? "#06113C" : "none"}
+              color={prioritySort === "asc" ? "white" : "black"}
+              onClick={() => handlePrioritySort("asc")}
+              variant={prioritySort === "asc" ? "solid" : "outline"}
               _hover={{
-                bg: "#06113C",
-                color: "white",
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
               }}
             >
-              {" "}
-              + Add Task
+              Priority Low
             </Button>
-            <AddTask
-              isOpen={isAddTaskModalOpen}
-              onClose={() => setAddTaskModalOpen(false)}
-              onAddTask={handleAddTask}
-            />
-            {selectedTask && (
-              <UpdateTask
-                isOpen={isUpdateTaskModalOpen}
-                onClose={() => {
-                  setUpdateTaskModalOpen(false);
-                  setSelectedTask(null);
-                }}
-                onUpdateTask={handleUpdateTask}
-                data={selectedTask}
+            <Button
+              w={"70%"}
+              display={"block"}
+              ml={5}
+              fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
+              fontWeight={"500"}
+              cursor={"pointer"}
+              bg={prioritySort === "desc" ? "#06113C" : "none"}
+              color={prioritySort === "desc" ? "white" : "black"}
+              onClick={() => handlePrioritySort("desc")}
+              variant={prioritySort === "desc" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
+            >
+              Priority High
+            </Button>
+          </Flex>
+        </Box>
+      </Box>
+
+      <Box w={"90%"} m={"auto"} mb={"30px"}>
+        <Box h={"70px"} zIndex={999}>
+          <Flex
+            justifyContent={"space-around"}
+            alignItems={"center"}
+            p={4}
+            //boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
+            borderBottom={"0.5px solid lightgray"}
+            position={"fixed"}
+            w={"80%"}
+            ml="auto"
+            bg={"white"}
+            zIndex={999}
+          >
+            <Box>
+              <Input
+                type="text"
+                w="md"
+                // h={"50px"}
+                borderRadius={"30px"}
+                border={"1px solid #06113C"}
+                placeholder="Search tasks..."
+                value={searchInput}
+                onChange={handleSearch}
               />
-            )}
-          </Box>
-        </Flex>
+            </Box>
+
+            <Box>
+              <Button
+                onClick={() => setAddTaskModalOpen(true)}
+                border={"1px solid #06113C"}
+                borderRadius={"30px"}
+                _hover={{
+                  bg: "#06113C",
+                  color: "white",
+                }}
+              >
+                {" "}
+                + Add Task
+              </Button>
+              <AddTask
+                isOpen={isAddTaskModalOpen}
+                onClose={() => setAddTaskModalOpen(false)}
+                onAddTask={handleAddTask}
+              />
+              {selectedTask && (
+                <UpdateTask
+                  isOpen={isUpdateTaskModalOpen}
+                  onClose={() => {
+                    setUpdateTaskModalOpen(false);
+                    setSelectedTask(null);
+                  }}
+                  onUpdateTask={handleUpdateTask}
+                  data={selectedTask}
+                />
+              )}
+            </Box>
+          </Flex>
+        </Box>
 
         <Flex justifyContent={"center"} p={4}>
           <Flex
             flexDirection={"column"}
-            p={5}
+            p={4}
             textAlign={"center"}
-            fontSize={"lg"}
-            boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
-            borderRadius={"10px"}
-            bg={"gray.50"}
+            fontSize={"sm"}
+            justifyContent={"space-between"}
+            borderRadius={"30px"}
+            bg={"gray.100"}
             color={"black"}
             w={"20%"}
           >
-            <strong>Total Tasks</strong> <Heading>{totalTasks}</Heading>
+            <strong>Total Tasks</strong>{" "}
+            <Heading color="darkblue.400">{totalTasks}</Heading>
           </Flex>
           <Flex
             flexDirection={"column"}
-            p={5}
+            p={4}
             textAlign={"center"}
-            fontSize={"xl"}
-            boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
-            borderRadius={"10px"}
-            bg={"gray.50"}
-            color={"black"}
-            w={"20%"}
-            ml={4}
-          >
-            <strong>Completed Tasks</strong> <Heading>{completedTasks}</Heading>
-          </Flex>
-          <Flex
-            flexDirection={"column"}
-            p={5}
-            textAlign={"center"}
-            fontSize={"xl"}
-            boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
-            borderRadius={"10px"}
-            bg={"gray.50"}
+            fontSize={"sm"}
+            justifyContent={"space-between"}
+            borderRadius={"30px"}
+            bg={"gray.100"}
             color={"black"}
             w={"20%"}
             ml={4}
           >
-            <strong>Overdue Tasks</strong> <Heading>{overdueTasks}</Heading>
+            <strong>Completed Tasks</strong>{" "}
+            <Heading color="darkblue.400">{completedTasks}</Heading>
           </Flex>
           <Flex
             flexDirection={"column"}
-            p={5}
+            p={4}
             textAlign={"center"}
-            fontSize={"xl"}
-            boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
-            borderRadius={"10px"}
-            bg={"gray.50"}
+            fontSize={"sm"}
+            justifyContent={"space-between"}
+            borderRadius={"30px"}
+            bg={"gray.100"}
+            color={"black"}
+            w={"20%"}
+            ml={4}
+          >
+            <strong>Overdue Tasks</strong>{" "}
+            <Heading color="darkblue.400">{overdueTasks}</Heading>
+          </Flex>
+          <Flex
+            flexDirection={"column"}
+            p={4}
+            textAlign={"center"}
+            fontSize={"sm"}
+            justifyContent={"space-between"}
+            borderRadius={"30px"}
+            bg={"gray.100"}
             color={"black"}
             w={"20%"}
             ml={4}
           >
             <strong>Completion Percentage</strong>{" "}
-            <Heading>{completionPercentage}%</Heading>
+            <Heading color="darkblue.400">{completionPercentage}%</Heading>
           </Flex>
         </Flex>
 
         {filteredAndSortedTasks.length > 0 && (
-          <Flex w={"90%"} m={"auto"} flexDirection={"column"} gap={5}>
+          <Flex
+            w={"90%"}
+            m={"auto"}
+            flexDirection={"column"}
+            gap={5}
+            mb={"30px"}
+          >
             {filteredAndSortedTasks.map((task) => (
               <TaskCard
                 key={task._id}

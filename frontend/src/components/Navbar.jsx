@@ -54,7 +54,7 @@ export const Navbar = () => {
       top={0}
       zIndex={1000}
       id="nav-menu"
-      h={{ base: "70px", md: "100px" }}
+      h={{ base: "70px", md: "80px" }}
       boxShadow="0px 2px 2px -2px rgba(0,0,0,0.2)"
       fontFamily="Lexend, sans-serif"
       w={{ base: "100%", md: "100%" }}
@@ -132,27 +132,29 @@ export const Navbar = () => {
      { isLoggedIn ?
      <Box w={"30%"}>
      <Button
-      //  display={"block"}
+       display={"block"}
        margin={"auto"}
        mr={3}
        mb={2}
+       borderRadius={'30px'}
        onClick={handleLogout}
-       colorScheme="#06113C"
+       colorScheme="#870000"
        variant="outline"
        _hover={{
-         bg: "#4573D2",
+         bg: "#870000",
          color: "white",
        }}
      >
        Logout
      </Button>
    </Box>:
-     <Box w={"30%"}>
+     <Box w={"30%"} display={(isLoggedIn)?'none':'block'}>
         <Button
-          display={"block"}
+          display={(isLoggedIn)?'none':'block'}
           margin={"auto"}
           mr={3}
           mb={2}
+          borderRadius={'30px'}
           colorScheme="#06113C"
           variant="outline"
           _hover={{

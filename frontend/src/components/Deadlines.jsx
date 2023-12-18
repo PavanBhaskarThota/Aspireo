@@ -32,14 +32,14 @@ export const Deadlines = () => {
             />
           </Box>
 
-          <Box w={{ base: "100%", md: "50%" }} mt={10}>
-            <Heading size={"2xl"} mb={10}>
+          <Box w={{ base: "100%", md: "50%" }} mt={5}>
+            <Heading size={"xl"} mb={10}>
               Track project time and hit Deadlines with ease
             </Heading>
             <Text
               w={{ base: "100%", md: "80%" }}
-              fontSize={"2xl"}
-              textAlign={{ base: "center" ,md:'left'}}
+              fontSize={"lg"}
+              textAlign={{ base: "center", md: "left" }}
             >
               Allocate tasks efficiently with Aspireo Plan and monitor work
               hours with Aspireo Track. This two-way integration provides a
@@ -49,9 +49,10 @@ export const Deadlines = () => {
 
             <Button
               display={"block"}
-              m={{ base: "auto", md: 10 }}
-              ml={10}
-              h={"60px"}
+              m={{ base: "auto", md: 0 }}
+              mt={5}
+              h={"50px"}
+              borderRadius={"25px"}
               bg={"#4573D2"}
               color={"white"}
               _hover={{

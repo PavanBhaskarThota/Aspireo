@@ -52,49 +52,57 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
     <Box
       p={5}
       borderWidth="1px"
-      borderRadius="md"
-      boxShadow="md"
+      borderRadius="30px"
+      // boxShadow="md"
       bg={
         task.status === "Completed"
-          ? "#007b19"
+          ? "#c3ffcf"
           : task.status === "Started"
           ? "#F0F0FF"
           : "#FCF7E9"
       }
       // maxW="md"
 
-      color={task.status === "Completed" ? "white" : "black"}
+      //color={task.status === "Completed" ? "white" : "black"}
       w="90%"
       m={"auto"}
-      fontSize={"xl"}
+      fontSize={"lg"}
     >
-      <VStack align="start" spacing={2}>
-        <Flex justifyContent={"space-between"} gap={10} w={"100%"}>
+      <VStack align="start" spacing={1}>
+        <Flex justifyContent={"space-between"} gap={5} w={"100%"}>
           <Box>
-            <Text fontSize="3xl" fontWeight="bold">
+            <Text fontSize="2xl" fontWeight="bold">
               {task.title}
             </Text>
             <Text>{task.description}</Text>
           </Box>
           <Box>
             <HStack>
-              <Badge colorScheme="blue">{task.status}</Badge>
-              <Badge colorScheme="orange">{task.priority}</Badge>
+              <Badge colorScheme="blue" borderRadius={"20px"} p={2}>
+                {task.status}
+              </Badge>
+              <Badge colorScheme="orange" borderRadius={"20px"} p={2}>
+                {task.priority}
+              </Badge>
             </HStack>
           </Box>
         </Flex>
 
-        <Collapse in={isOpen} animateOpacity>
-          <Box>
-            <Text fontSize="lg" color="red.700">
+        <Collapse width={"100%"} in={isOpen} animateOpacity >
+          <Box  w={'100%'} justifyContent={'space-between'}>
+            {/* <Text fontSize="lg" color="red.700">
               Concludes : {remainingTime}
-            </Text>
-            <Text fontSize="lg">Due : {dt}</Text>
+            </Text> */}
+            <Box w={'100%'}>
+              <Text fontSize="sm">Due : {dt}</Text>
 
-            <Text fontSize="lg">Tags : {task.tags}</Text>
-            <HStack mt={4}>
+              <Text fontSize="sm">Tags : {task.tags}</Text>
+            </Box>
+
+            <Box justifyContent={"end"} w={"100%"} gap={2}>
               <Button
                 colorScheme="blue"
+                borderRadius={"30px"}
                 bg={task.status === "Completed" ? "white" : "none"}
                 variant={"outline"}
                 onClick={() => onEdit(task)}
@@ -103,26 +111,33 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
               </Button>
               <Button
                 colorScheme="red"
+                borderRadius={"30px"}
                 bg={task.status === "Completed" ? "white" : "none"}
                 variant={"outline"}
                 onClick={() => onDelete(task._id)}
               >
                 Delete
               </Button>
-            </HStack>
+            </Box>
           </Box>
         </Collapse>
-        <Link
-          onClick={onToggle}
-          cursor={"pointer"}
-          // color={'#06113C'}
-          fontSize={"md"}
-          // textDecoration={"underline"}
-          // _hover={{ fontWeight: "bold" }}
-        >
-          {" "}
-          {isOpen ? "Show less" : "Show More"}
-        </Link>
+        <Flex w={"100%"} justifyContent={"space-between"} alignItems={"center"}>
+          <Text fontSize="sm" color="red.700">
+            Concludes : {remainingTime}
+          </Text>
+          <Link
+            onClick={onToggle}
+            cursor={"pointer"}
+            // color={'#06113C'}
+            fontSize={"sm"}
+            textAlign={'right'}
+            // textDecoration={"underline"}
+            // _hover={{ fontWeight: "bold" }}
+          >
+            {" "}
+            {isOpen ? "Show less..." : "Show More..."}
+          </Link>
+        </Flex>
       </VStack>
     </Box>
   );
