@@ -17,6 +17,7 @@ import {
   Text,
   useToast,
   Radio,
+  Link,
 } from "@chakra-ui/react";
 
 import { IoIosArrowForward } from "react-icons/io";
@@ -162,7 +163,7 @@ export const Tasks = () => {
     <DIV>
       <Box w={"20%"} borderRight={"1px solid"} position={"relative"}>
         <Box w={"20%"} position={"fixed"}>
-          <Heading textAlign={"center"} mt={5} w={'90%'}>
+          <Heading textAlign={"center"} mt={5} w={"90%"}>
             {" "}
             Tasks
           </Heading>
@@ -175,35 +176,80 @@ export const Tasks = () => {
               display={"block"}
               ml={5}
               fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
+              bg={dueDateSort === "all" ? "#06113C" : "none"}
+              color={dueDateSort === "all" ? "white" : "black"}
               fontWeight={"500"}
               cursor={"pointer"}
               onClick={() => handleDueDateSort("all")}
               variant={dueDateSort === "all" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
+              
             >
-              All
+              <Link
+                onClick={() => handlePrioritySort("all")}
+                variant={prioritySort === "all" ? "solid" : "outline"}
+                textDecoration={'none'}
+                // LinkAlign={'center'}
+                
+                // mt={3}
+              >
+                All
+              </Link>
             </Button>
-            <Text textAlign={"center"} w={'90%'} fontSize={'xl'} fontWeight={'bold'} mt={5}>Sort By Due Date</Text>
+            <Text
+              textAlign={"center"}
+              w={"90%"}
+              fontSize={"xl"}
+              fontWeight={"bold"}
+              mt={5}
+            >
+              Sort By Due Date
+            </Text>
             <Button
               w={"70%"}
               display={"block"}
               ml={5}
               fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
               cursor={"pointer"}
               fontWeight={"500"}
+              bg={dueDateSort === "asc" ? "#06113C" : "none"}
+              color={dueDateSort === "asc" ? "white" : "black"}
               onClick={() => handleDueDateSort("asc")}
               variant={dueDateSort === "asc" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
             >
-              Old Tasks 
+              Old Tasks
             </Button>
             <Button
               w={"70%"}
               display={"block"}
               ml={5}
               fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
               fontWeight={"500"}
               cursor={"pointer"}
+              bg={dueDateSort === "desc" ? "#06113C" : "none"}
+              color={dueDateSort === "desc" ? "white" : "black"}
               onClick={() => handleDueDateSort("desc")}
               variant={dueDateSort === "desc" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
             >
               Latest Tasks
             </Button>
@@ -218,16 +264,33 @@ export const Tasks = () => {
                      
                       All
                     </Button> */}
-            <Text textAlign={"center"} w={'90%'} fontSize={'xl'} fontWeight={'bold'} mt={5}>Sort By Priority</Text>
+            <Text
+              textAlign={"center"}
+              w={"90%"}
+              fontSize={"xl"}
+              fontWeight={"bold"}
+              mt={5}
+            >
+              Sort By Priority
+            </Text>
             <Button
               w={"70%"}
               display={"block"}
               ml={5}
               fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
               fontWeight={"500"}
               cursor={"pointer"}
+              bg={prioritySort === "asc" ? "#06113C" : "none"}
+              color={prioritySort === "asc" ? "white" : "black"}
               onClick={() => handlePrioritySort("asc")}
               variant={prioritySort === "asc" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
             >
               Priority Low
             </Button>
@@ -236,10 +299,19 @@ export const Tasks = () => {
               display={"block"}
               ml={5}
               fontSize={"md"}
+              borderRadius={"20px"}
+              border={"1px solid "}
               fontWeight={"500"}
               cursor={"pointer"}
+              bg={prioritySort === "desc" ? "#06113C" : "none"}
+              color={prioritySort === "desc" ? "white" : "black"}
               onClick={() => handlePrioritySort("desc")}
               variant={prioritySort === "desc" ? "solid" : "outline"}
+              _hover={{
+                border:'1px solid',
+                // bg:'white',
+                // color:'black'
+              }}
             >
               Priority High
             </Button>
