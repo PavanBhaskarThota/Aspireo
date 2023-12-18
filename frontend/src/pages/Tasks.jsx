@@ -15,6 +15,7 @@ import {
   AccordionIcon,
   Icon,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 
 import { IoIosArrowForward } from "react-icons/io";
@@ -37,18 +38,20 @@ export const Tasks = () => {
   const [dueDateSort, setDueDateSort] = useState("all");
   const [prioritySort, setPrioritySort] = useState("all");
 
+  const toast = useToast();
+
   const { tasks, isLoading, isError } = useSelector(
     (store) => store.taskReducer
   );
 
-  const token= localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   const dispatch = useDispatch();
 
   console.log(tasks, isLoading, isError);
 
   const handleAddTask = (taskData) => {
-    dispatch(addTaskFun(taskData,token));
+    dispatch(addTaskFun(taskData, token,toast));
     setRefresh(!refresh);
   };
 
@@ -59,20 +62,21 @@ export const Tasks = () => {
 
   const handleUpdateTask = (updatedTaskData, taskId) => {
     setUpdateTaskModalOpen(false);
-    dispatch(updateTaskFun(updatedTaskData, taskId,token));
+    dispatch(updateTaskFun(updatedTaskData, taskId, token,toast));
     setRefresh(!refresh);
   };
 
   const handleDeleteTask = (taskId) => {
     // console.log(taskId);
-    dispatch(deleteTaskFun(taskId,token));
+    dispatch(deleteTaskFun(taskId, token,toast));
     setRefresh(!refresh);
   };
 
   const totalTasks = tasks.length;
 
-  
-  const completedTasks = tasks.filter((task) => task.status === "Completed").length;
+  const completedTasks = tasks.filter(
+    (task) => task.status === "Completed"
+  ).length;
 
   const overdueTasks = tasks.filter((task) => {
     const currentDate = new Date();
@@ -256,11 +260,11 @@ export const Tasks = () => {
 
               <Flex alignItems={"center"} pl={10}>
                 <Icon as={IoIosArrowForward} />
-                <Text fontSize={'xl'}> Ongoing</Text>
+                <Text fontSize={"xl"}> Ongoing</Text>
               </Flex>
               <Flex alignItems={"center"} pl={10}>
                 <Icon as={IoIosArrowForward} />
-                <Text fontSize={'xl'}> Completed </Text>
+                <Text fontSize={"xl"}> Completed </Text>
               </Flex>
             </AccordionPanel>
           </AccordionItem>

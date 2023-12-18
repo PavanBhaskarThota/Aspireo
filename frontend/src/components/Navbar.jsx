@@ -14,10 +14,13 @@ import {
   DrawerBody,
   DrawerHeader,
   Box,
+  useToast,
 } from "@chakra-ui/react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Aspireo from "../assets/Aspireo.logo.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../redux/userReducer/action";
 
 export const Navbar = () => {
   const newFont = `
@@ -26,6 +29,17 @@ export const Navbar = () => {
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Outfit:wght@400;600;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">`;
 
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const token = localStorage.getItem('token')
+  const { isLoggedIn,isAdmin } = useSelector((store) => store.userReducer);
+  console.log(isLoggedIn)  
+  const dispatch = useDispatch();
+
+  const toast= useToast()
+
+  const handleLogout= ()=>{
+    console.log("hi")
+    dispatch(userLogout(token,toast))
+  }
 
   return (
     <Flex
@@ -108,14 +122,32 @@ export const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/tasks">Tasks</Link>
         <Link to="/projects">Projects</Link>
-        <Link to="/admin">Admin</Link>
+         {isAdmin && <Link to="/admin">Admin</Link>}
         <Link to="/about">About</Link>
-        <Link to="/signup">Signup</Link>
+        {/* <Link to="/signup">Signup</Link> */}
         
       </Flex>
       {/* <Spacer /> */}
 
-      <Box w={"30%"}>
+     { isLoggedIn ?
+     <Box w={"30%"}>
+     <Button
+      //  display={"block"}
+       margin={"auto"}
+       mr={3}
+       mb={2}
+       onClick={handleLogout}
+       colorScheme="#06113C"
+       variant="outline"
+       _hover={{
+         bg: "#4573D2",
+         color: "white",
+       }}
+     >
+       Logout
+     </Button>
+   </Box>:
+     <Box w={"30%"}>
         <Button
           display={"block"}
           margin={"auto"}
@@ -128,9 +160,9 @@ export const Navbar = () => {
             color: "white",
           }}
         >
-          <Link to="/login">Register</Link>
+          <Link to="/login">Login</Link>
         </Button>
-      </Box>
+      </Box> }
     </Flex>
   );
 };

@@ -1,10 +1,10 @@
-// const express = require("express");
-// const bcrypt=require("bcrypt");
-// const jwt=require("jsonwebtoken");
-// const { userModel } = require("../model/user.model");
-// const {  BlackListModel } = require("../model/blacklist.model");
+const express = require("express");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { userModel } = require("../model/user.model");
+const { BlackListModel } = require("../model/blacklist.model");
 
-// const userRouter = express.Router();
+const userRouter = express.Router();
 // <<<<<<< fp11_100-day_5
 // userRouter.post("/registration",async(req,res)=>{
 //   const{email,password,confirmPassword,userName}=req.body
@@ -62,7 +62,6 @@
 //       res.status(400).send({ message: 'Password does not match.' })
 //       }
 
-     
 //   }
 // }
 // catch (error) {
@@ -95,7 +94,6 @@
 //     }
 //   });
 
-
 // userRouter.post("/login", async (req, res) => {
 //   // console.log(req.body)
 //   const { email, password } = req.body;
@@ -106,9 +104,9 @@
 //     }
 //     xonsole.log(user)
 //     bcrypt.compare(password, user.password, (err, result) => {
-      // if (err) {
-      //   return res.status(200).send({ message: "Invalid credentials" });
-      // }
+// if (err) {
+//   return res.status(200).send({ message: "Invalid credentials" });
+// }
 
 //       if (result) {
 //         const token = jwt.sign({ userID: user._id, userName: user.userName }, "Aspireo", { expiresIn: "1d" });
@@ -122,12 +120,11 @@
 //   }
 // });
 
-  
 //   userRouter.get("/logout", async (req, res) => {
 //     const token= req.headers.authorization?.split(' ')[1] || null;
 
 //     try {
-     
+
 //         if(token){
 //             const loggedOut= await BlackListModel.updateOne({}, {$addToSet: {blackList: token}},{
 //                 upsert:true
@@ -135,97 +132,97 @@
 
 //             res.status(200).send({"msg":"LoggedOut Successfully", loggedOut});
 //         }
-        
+
 //     }catch(error){
 //         res.status(400).send({"logout error":error.message});
 //     }
-    
+
 //   });
 
-
-
-userRouter.post('/registration', async(req,res)=>{
-
-  const {email,password}= req.body;
+userRouter.post("/registration", async (req, res) => {
+  const { email, password, confirmPassword } = req.body;
 
   try {
+    const existinguser = await userModel.findOne({ email });
 
-      const existinguser= await userModel.findOne({email});
+    if (existinguser) {
+      return res.status(200).send({ message: "User already exists" });
+    }
 
-      if(existinguser){
-          return res.status(200).send({"msg":"User is already Registered!"});
-      }
+    if (password === confirmPassword) {
+      bcrypt.hash(password, 7, async (err, result) => {
+        if (err) {
+          return res.status(200).send({ message: "Internal Server Error" });
+        }
 
+        req.body.password = result;
 
-      bcrypt.hash(password, 7, async(err, result)=>{
-          if(err){
-          return res.status(200).send({"hash error":err.message});
-          }
+        const newUser = new userModel(req.body);
+        await newUser.save();
 
-          req.body.password= result;
-
-          const newUser= new userModel(req.body);
-          await newUser.save();
-
-          res.status(200).send({message: "User created", newUser})
-      })
-      
-  }catch(error) {
-      res.status(400).send({"get error": error.message});
+        return res.status(200).send({ message: "User created", newUser });
+      });
+    } else {
+      return res.status(400).send({ message: "Password does not match." });
+    }
+  } catch (error) {
+    res.status(400).send({ message: "Internal Server Error" });
   }
 });
 
-
-userRouter.post('/login', async(req,res)=>{
-
-  const {email,password}= req.body;
+userRouter.post("/login", async (req, res) => {
+  const { email, password } = req.body;
 
   try {
-      
-      const existinguser= await userModel.findOne({email});
 
-      if(!existinguser){
-          return res.status(200).send({"msg":"Please register to login!"});
+    if(email==='admin@gmail.com' && password==="admin"){
+      return res.status(200).send({ message: "redirects to Admin" });
+    }
+
+    const existinguser = await userModel.findOne({ email });
+
+    if (!existinguser) {
+      return res.status(200).send({ message: "Please register to login!" });
+    }
+
+    bcrypt.compare(password, existinguser.password, (err, result) => {
+      if (!result) {
+        return res.status(200).send({ message: "Enter correct credentials" });
       }
 
-      bcrypt.compare(password, existinguser.password, (err, result)=>{
+      const token = jwt.sign({ userId: existinguser._id }, process.env.KEY, {
+        expiresIn: "1d",
+      });
 
-          if(!result){
-              return res.status(200).send({"compare error":err.message}); 
-          }
-
-          const token= jwt.sign({userId: existinguser._id}, process.env.KEY, { expiresIn: '1d'});
-
-          if(token){
-              return res.status(200).send({"message":"Login Successful", token, "user":existinguser});
-          }
-      })
-
-      
-  }catch(error){
-      return res.status(400).send({"login error":error.message});
+      if (token) {
+        return res
+          .status(200)
+          .send({ message: "Login Successful", token, user: existinguser });
+      }
+    });
+  } catch (error) {
+    return res.status(400).send({ message: "Internal Server Error" });
   }
 });
 
-userRouter.get('/logout', async(req,res)=>{
-
-  const token= req.headers.authorization?.split(' ')[1] || null;
+userRouter.get("/logout", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1] || null;
 
   try {
-   
-      if(token){
-          const loggedOut= await BlackListModel.updateOne({}, {$addToSet: {blackList: token}},{
-              upsert:true
-          });
+    if (token) {
+      const loggedOut = await BlackListModel.updateOne(
+        {},
+        { $addToSet: { blackList: token } },
+        {
+          upsert: true,
+        }
+      );
 
-          res.status(200).send({"msg":"LoggedOut Successfully", loggedOut});
-      }
-      
-  }catch(error){
-      res.status(400).send({"logout error":error.message});
+      res.status(200).send({ message: "LoggedOut Successfully", loggedOut });
+    }
+  } catch (error) {
+    res.status(400).send({ message: "Internal Server Error" });
   }
-
-})
-  
+});
 
 module.exports = { userRouter };

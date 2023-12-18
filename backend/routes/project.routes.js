@@ -55,7 +55,7 @@ projectRouter.post('/searchCollab', async (req, res) => {
       );
 
       if(users.length>0){
-         return res.status(200).send({"msg":"colleborators","Colleborators":users});
+         return res.status(200).send({message:"colleborators","Colleborators":users});
         }
         return res.status(200).send({"msg":"Not Found"});
 
@@ -109,10 +109,10 @@ projectRouter.post('/searchCollab', async (req, res) => {
       );
   
       if (updatedProject) {
-        return res.status(200).send({ "msg": "Project Updated", "Project": updatedProject });
+        return res.status(200).send({ message: "Project Updated Successfully", "Project": updatedProject });
       }
   
-      return res.status(200).send({ "msg": "Project not updated" });
+      return res.status(200).send({ message: "Project not updated" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });
@@ -128,16 +128,16 @@ projectRouter.post('/searchCollab', async (req, res) => {
       console.log(updated,req.body,projectId);
       
       const updatedProject = await ProjectModel.findByIdAndUpdate(
-        req.body._id,
+        projectId,
         updated,
         { new: true }
       );
   
       if (updatedProject) {
-        return res.status(200).send({ "msg": "Project Updated", "Project": updatedProject });
+        return res.status(200).send({ message: "Message Sent Successfully", "Project": updatedProject });
       }
   
-      return res.status(200).send({ "msg": "Project not updated" });
+      return res.status(200).send({ message: "Message not updated" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });

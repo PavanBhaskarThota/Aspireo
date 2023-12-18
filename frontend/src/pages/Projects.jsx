@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, useToast, useToken } from "@chakra-ui/react";
 import AddProject from "../components/AddProject";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -22,7 +22,9 @@ export const Projects = () => {
   const { user } = useSelector((store) => store.userReducer);
   const { projects, users } = useSelector((store) => store.projectReducer);
   const dispatch = useDispatch();
+  const toast= useToast()
 
+  console.log(projects, "projects");
   const userData = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
 
@@ -36,12 +38,12 @@ export const Projects = () => {
 
     console.log(projectData);
 
-    dispatch(addProjectFun(projectData));
+    dispatch(addProjectFun(projectData, token, toast));
+    setRefresh(!refresh);
     setAddProjectModalOpen(false);
   };
 
   const handleAddTask = (project) => {
-    // Implement your logic for adding task
     console.log("Adding task to project:", project);
   };
 
@@ -64,7 +66,7 @@ export const Projects = () => {
 
     // console.log(patchProject, "hi", selectedProject._id);
 
-    dispatch(updateProjectFun(patchProject, userId, token));
+    dispatch(updateProjectFun(patchProject, userId, token,toast));
 
     setAddCollaboratorModalOpen(false);
     setRefresh(!refresh);
@@ -73,7 +75,7 @@ export const Projects = () => {
   useEffect(() => {
     dispatch(getProjectsFun(token));
     dispatch(getAllUsersFun(token));
-  }, [dispatch, refresh,setRefresh]);
+  }, [dispatch, refresh, setRefresh]);
 
   // console.log(projects,users);
 

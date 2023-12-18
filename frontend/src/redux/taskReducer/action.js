@@ -2,7 +2,7 @@ import { ADDTASK_FAILURE, ADDTASK_REQUEST, ADDTASK_SUCCESS, DELETETASK_FAILURE, 
 
 
 
-export const addTaskFun=(data,token)=>(dispatch)=>{
+export const addTaskFun=(data,token,toast)=>(dispatch)=>{
 
     dispatch({ type:ADDTASK_REQUEST })
 
@@ -18,10 +18,31 @@ export const addTaskFun=(data,token)=>(dispatch)=>{
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
-        dispatch({
+        if(res.message==="Task Added Successfully"){
+
+          dispatch({
             type:ADDTASK_SUCCESS,
             payload:res.data
-        })
+          });
+
+          toast({
+            title: "success",
+            description: res.message,
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+        }else{
+          toast({
+            title: "Error",
+            description: res.message,
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+        }
       })
       .catch((err) => {console.log(err)
       dispatch({type:ADDTASK_FAILURE })}
@@ -44,11 +65,12 @@ export const getTasksFun=(token)=>(dispatch)=>{
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
-      if(res.success)
-      dispatch({
+      if(res.message==="All Tasks"){
+        dispatch({
           type:GETTASKS_SUCCESS,
           payload:res.data
-      })
+        })
+      }
     })
     .catch((err) => {console.log(err)
     dispatch({type:GETTASKS_FAILURE })}
@@ -56,7 +78,7 @@ export const getTasksFun=(token)=>(dispatch)=>{
 }
 
 
-export const updateTaskFun=(data,id,token)=>(dispatch)=>{
+export const updateTaskFun=(data,id,token,toast)=>(dispatch)=>{
 
   dispatch({ type:UPDATETASK_REQUEST})
 
@@ -72,16 +94,37 @@ export const updateTaskFun=(data,id,token)=>(dispatch)=>{
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
-      dispatch({
+
+      if(res.message==="Task Updated Successfully"){
+
+        dispatch({
           type:UPDATETASK_SUCCESS,
-      })
+        })
+        toast({
+          title: "success",
+          description: res.message,
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+      }else{
+        toast({
+          title: "Error",
+          description: res.message,
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+      }
     })
     .catch((err) => {console.log(err)
     dispatch({type:UPDATETASK_FAILURE })}
     );
 }
 
-export const deleteTaskFun=(id,token)=>(dispatch)=>{
+export const deleteTaskFun=(id,token,toast)=>(dispatch)=>{
 
   dispatch({ type:DELETETASK_REQUEST})
 
@@ -96,9 +139,31 @@ export const deleteTaskFun=(id,token)=>(dispatch)=>{
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
-      dispatch({
+
+      if(res.message==="Task Deleted Successfully"){
+
+        dispatch({
           type:DELETETASK_SUCCESS,
-      })
+        })
+
+        toast({
+          title: "success",
+          description: res.message,
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+      }else{
+        toast({
+          title: "Error",
+          description: res.message,
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+      }
     })
     .catch((err) => {console.log(err)
     dispatch({type:DELETETASK_FAILURE })}

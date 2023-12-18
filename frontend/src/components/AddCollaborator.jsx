@@ -31,7 +31,7 @@ const AddCollaborators = ({ isOpen, onClose, users, onAddCollaborator }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        
+
         <ModalHeader>Add Collaborators</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -44,8 +44,7 @@ const AddCollaborators = ({ isOpen, onClose, users, onAddCollaborator }) => {
           <Button colorScheme="blue" onClick={handleSearch}>
             Search
           </Button>
-          {filteredUsers.length > 0 ? (
-            filteredUsers.map((user) => (
+          {filteredUsers.length > 0 ? (filteredUsers.map((user) => (
               <Stack key={user._id} direction="row" justify="space-between" align="center">
                 <Text>{user.email}</Text>
                 <Button onClick={() => onAddCollaborator(user._id)}>Add</Button>

@@ -23,7 +23,7 @@ export const reducer= (state = initialState, { type, payload }) => {
         return {...state, isLoading:false, isError:false}  
 
       case GETPROJECT_SUCCESS:
-        return {...state, isLoading:false, isError:false, projects:payload}  
+        return {...state, isLoading:false, isError:false, projects:payload || []}  
 
       case ALLUSERS_SUCCESS:
         return {...state, isLoading:false, isError:false, users:payload}  
