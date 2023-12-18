@@ -11,7 +11,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setUsers, setTasks, setProjects, setLogs } from "../redux/adminReducer/adminAction";
+// import { setUsers, setTasks, setProjects, setLogs } from "../redux/adminReducer/adminAction";
 
 import { Route, Routes, Link } from 'react-router-dom';
 import { MdDashboard, MdEqualizer, MdSettings } from 'react-icons/md';
@@ -23,28 +23,28 @@ console.log(token,"admintoken")
 // Define the AdminPage component
 export const AdminPage = () => {
 
-  const dispatch = useDispatch();
-  // const users = useSelector((state) => state.adminReducer.users);
-  const tasks = useSelector((state) => state.adminReducer.tasks);
-  // const projects = useSelector((state) => state.adminReducer.projects);
-  // const logs = useSelector((state) => state.admin.logs);
- console.log("abcds")
-  console.log(tasks)
+//   const dispatch = useDispatch();
+//   // const users = useSelector((state) => state.adminReducer.users);
+//   const tasks = useSelector((state) => state.adminReducer.tasks);
+//   // const projects = useSelector((state) => state.adminReducer.projects);
+//   // const logs = useSelector((state) => state.admin.logs);
+//  console.log("abcds")
+//   console.log(tasks)
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        // dispatch(setUsers(token));
-        dispatch(setTasks(token));
-        // dispatch(setProjects(token));
-        // dispatch(setLogs());
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+//   useEffect(() => {
+//     const fetchUserData = async () => {
+//       try {
+//         // dispatch(setUsers(token));
+//         dispatch(setTasks(token));
+//         // dispatch(setProjects(token));
+//         // dispatch(setLogs());
+//       } catch (error) {
+//         console.error('Error fetching data:', error);
+//       }
+//     };
 
-    fetchUserData();
-  }, [dispatch]);
+//     fetchUserData();
+//   }, [dispatch]);
 
 
 
@@ -95,119 +95,233 @@ export const AdminPage = () => {
 };
 
 
+// const Dashboard = () => {
+
+//   const numberOfProjects = useSelector((state) => state.adminReducer.projects);
+
+//   const totalUsers = useSelector((state) => state.adminReducer.users);
+  
+//   const defaultData = {
+//     numberOfProjects: 10,
+//     numberOfTodos: 25,
+//     totalUsers: 100,
+//     totalProfit: 5000,
+//   };
+
+  
+//   return (
+//     <div className="dashboard">
+//       <h2>Dashboard</h2>
+
+//       {/* Grid layout for data cards */}
+//       <div className="data-grid">
+//         <div className="data-card">Number of Projects: {numberOfProjects || defaultData.numberOfProjects}</div>
+//         <div className="data-card">Number of Todos: {  defaultData.numberOfTodos}</div>
+//         <div className="data-card">Total Users: {totalUsers || defaultData.totalUsers}</div>
+//         <div className="data-card">Total Profit: ${ defaultData.totalProfit}</div>
+//       </div>
+//     </div>
+//   );
+// };
+
+
+
+
 const Dashboard = () => {
-
-  const numberOfProjects = useSelector((state) => state.adminReducer.projects);
-
-  const totalUsers = useSelector((state) => state.adminReducer.users);
-  
-  const defaultData = {
-    numberOfProjects: 10,
-    numberOfTodos: 25,
-    totalUsers: 100,
-    totalProfit: 5000,
-  };
-
-  
   return (
     <div className="dashboard">
       <h2>Dashboard</h2>
-
-      {/* Grid layout for data cards */}
       <div className="data-grid">
-        <div className="data-card">Number of Projects: {numberOfProjects || defaultData.numberOfProjects}</div>
-        <div className="data-card">Number of Todos: {  defaultData.numberOfTodos}</div>
-        <div className="data-card">Total Users: {totalUsers || defaultData.totalUsers}</div>
-        <div className="data-card">Total Profit: ${ defaultData.totalProfit}</div>
+        <div className="data-card">Number of Projects: 10</div>
+        <div className="data-card">Number of Todos: 25</div>
+        <div className="data-card">Total Users: 100</div>
+        <div className="data-card">Total Profit: $5000</div>
       </div>
     </div>
   );
 };
 
 
-const Statistics = () => {
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.adminReducer.users);
-  const tasks = useSelector((state) => state.adminReducer.tasks);
-  const projects = useSelector((state) => state.adminReducer.projects);
-  // const logs = useSelector((state) => state.admin.logs);
- console.log("abcds")
-  console.log(users)
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        dispatch(setUsers(token));
-        dispatch(setTasks(token));
-        dispatch(setProjects(token));
-        // dispatch(setLogs());
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+// const Statistics = () => {
+//   const dispatch = useDispatch();
+//   const users = useSelector((state) => state.adminReducer.users);
+//   const tasks = useSelector((state) => state.adminReducer.tasks);
+//   const projects = useSelector((state) => state.adminReducer.projects);
+//   // const logs = useSelector((state) => state.admin.logs);
+//  console.log("abcds")
+//   console.log(users)
 
-    fetchUserData();
-  }, [dispatch]);
+//   useEffect(() => {
+//     const fetchUserData = async () => {
+//       try {
+//         dispatch(setUsers(token));
+//         dispatch(setTasks(token));
+//         dispatch(setProjects(token));
+//         // dispatch(setLogs());
+//       } catch (error) {
+//         console.error('Error fetching data:', error);
+//       }
+//     };
 
-  const getCountsForUser = (userId) => {
+//     fetchUserData();
+//   }, [dispatch]);
 
-    if (!tasks || !projects) {
-      return {
-        taskCount: Math.floor(Math.random() * 10),
-        projectCount: Math.floor(Math.random() * 5),
-      };
-    }
+//   const getCountsForUser = (userId) => {
 
-    const userTasks = tasks.filter((task) => task.userId === userId.$oid);
+//     if (!tasks || !projects||!users) {
+//       return {
+//         taskCount: Math.floor(Math.random() * 10),
+//         projectCount: Math.floor(Math.random() * 5),
+//       };
+//     }
+
+//     const userTasks = tasks.filter((task) => task.userId === userId.$oid);
 
  
-    const userProjects = Array.isArray(projects)
-      ? projects.filter((project) =>
-          project.collaborators && project.collaborators.includes(userId.$oid)
-        )
-      : [];
+//     const userProjects = Array.isArray(projects)
+//       ? projects.filter((project) =>
+//           project.collaborators && project.collaborators.includes(userId.$oid)
+//         )
+//       : [];
 
-    return {
-      taskCount: userTasks.length,
-      projectCount: userProjects.length,
-    };
+//     return {
+//       taskCount: userTasks.length,
+//       projectCount: userProjects.length,
+//     };
+//   };
+
+// //   if (!users || !tasks || !projects) {
+// //     return (
+// //       <div>
+// //         <h2>User Table</h2>
+// //         <table>
+// //           <thead>
+// //             <tr>
+// //               <th>User ID</th>
+// //               <th>User Name</th>
+// //               <th>Task Count</th>
+// //               <th>Project Count</th>
+// //             </tr>
+// //           </thead>
+// //           <tbody>
+// //           {[...Array(5).keys()].map((index) => {
+// //   const userId = `user_${index + 1}`;
+// //   const userName = `User ${index + 1}`;
+// //   const { taskCount, projectCount } = getCountsForUser({ $oid: userId });
+
+// //   return (
+// //     <tr key={userId}>
+// //       <td>{userId}</td>
+// //       <td>{userName}</td>
+// //       <td>{taskCount}</td>
+// //       <td>{projectCount}</td>
+// //     </tr>
+// //   );
+// // })}
+// //           </tbody>
+// //         </table>
+// //       </div>
+// //     );
+// //   }
+
+//   // Render the actual user statistics table
+//   return (
+//     <div>
+//       <h2>User Table</h2>
+//       <table>
+//         <thead>
+//           <tr>
+//             <th>User ID</th>
+//             <th>User Name</th>
+//             <th>Task Count</th>
+//             <th>Project Count</th>
+//           </tr>
+//         </thead>
+//         {/* <tbody>
+//           {users.map((user) => (
+
+//             <tr key={user._id.$oid}>
+//               <td>{user._id.$oid}</td>
+//               <td>{user.userName}</td>
+//               <td>{getCountsForUser(user._id).taskCount}</td>
+//               <td>{getCountsForUser(user._id).projectCount}</td>
+//             </tr>
+//           ))}
+//         </tbody> */}
+
+// {/* 
+// <tbody>
+//   {users.map((user) => {
+//     const counts = getCountsForUser(user._id);
+//     return (
+//       <tr key={user._id.$oid}>
+//         <td>{user._id.$oid}</td>
+//         <td>{user.userName}</td>
+//         <td>{counts.taskCount}</td>
+//         <td>{counts.projectCount}</td>
+//       </tr>
+//     );
+//   })}
+// </tbody> */}
+//       </table>
+//     </div>
+//   );
+// };
+
+
+
+
+
+
+const Statistics = () => {
+  // Generate random names
+  const generateRandomNames = () => {
+    const names = [
+      'John Doe',
+      'Jane Doe',
+      'Bob Smith',
+      'Alice Johnson',
+      'Michael Brown',
+      'Emily Davis',
+      'David Wilson',
+      'Olivia Miller',
+      'Christopher Jones',
+      'Sophia Martinez',
+      'Matthew Taylor',
+      'Emma Harris',
+      'Daniel Anderson',
+      'Ava Thomas',
+      'William Jackson',
+      'Ella White',
+      'Joseph Moore',
+      'Grace Thompson',
+      'James Garcia',
+    ];
+
+    return names;
   };
 
-//   if (!users || !tasks || !projects) {
-//     return (
-//       <div>
-//         <h2>User Table</h2>
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>User ID</th>
-//               <th>User Name</th>
-//               <th>Task Count</th>
-//               <th>Project Count</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//           {[...Array(5).keys()].map((index) => {
-//   const userId = `user_${index + 1}`;
-//   const userName = `User ${index + 1}`;
-//   const { taskCount, projectCount } = getCountsForUser({ $oid: userId });
+  // Get random names
+  const randomNames = generateRandomNames();
 
-//   return (
-//     <tr key={userId}>
-//       <td>{userId}</td>
-//       <td>{userName}</td>
-//       <td>{taskCount}</td>
-//       <td>{projectCount}</td>
-//     </tr>
-//   );
-// })}
-//           </tbody>
-//         </table>
-//       </div>
-//     );
-//   }
+  // Generate random user data with random names
+  const generateRandomUserData = () => {
+    const users = [];
+    for (let i = 1; i <= 15; i++) {
+      const userId = `user_${i}`;
+      const userName = randomNames[Math.floor(Math.random() * randomNames.length)];
+      const taskCount = Math.floor(Math.random() * 10);
+      const projectCount = Math.floor(Math.random() * 5);
 
-  // Render the actual user statistics table
+      users.push({ userId, userName, taskCount, projectCount });
+    }
+    return users;
+  };
+
+  // Get random user data
+  const randomUsers = generateRandomUserData();
+
   return (
     <div>
       <h2>User Table</h2>
@@ -220,37 +334,20 @@ const Statistics = () => {
             <th>Project Count</th>
           </tr>
         </thead>
-        {/* <tbody>
-          {users.map((user) => (
-
-            <tr key={user._id.$oid}>
-              <td>{user._id.$oid}</td>
+        <tbody>
+          {randomUsers.map((user) => (
+            <tr key={user.userId}>
+              <td>{user.userId}</td>
               <td>{user.userName}</td>
-              <td>{getCountsForUser(user._id).taskCount}</td>
-              <td>{getCountsForUser(user._id).projectCount}</td>
+              <td>{user.taskCount}</td>
+              <td>{user.projectCount}</td>
             </tr>
           ))}
-        </tbody> */}
-
-
-<tbody>
-  {users.map((user) => {
-    const counts = getCountsForUser(user._id);
-    return (
-      <tr key={user._id.$oid}>
-        <td>{user._id.$oid}</td>
-        <td>{user.userName}</td>
-        <td>{counts.taskCount}</td>
-        <td>{counts.projectCount}</td>
-      </tr>
-    );
-  })}
-</tbody>
+        </tbody>
       </table>
     </div>
   );
 };
-
 
 const Logs = () => {
   const adminState = useSelector((state) => state.adminReducer.logs);
