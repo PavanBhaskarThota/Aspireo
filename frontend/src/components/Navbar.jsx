@@ -17,7 +17,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Aspireo from "../assets/Aspireo.logo.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../redux/userReducer/action";
@@ -33,12 +33,13 @@ export const Navbar = () => {
   const { isLoggedIn,isAdmin } = useSelector((store) => store.userReducer);
   console.log(isLoggedIn)  
   const dispatch = useDispatch();
+  const navigate= useNavigate();
 
   const toast= useToast()
 
   const handleLogout= ()=>{
     console.log("hi")
-    dispatch(userLogout(token,toast))
+    dispatch(userLogout(token,toast,navigate));
   }
 
   return (

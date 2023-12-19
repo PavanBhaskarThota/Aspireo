@@ -16,7 +16,7 @@ import {
 export const addProjectFun = (data, token, toast) => (dispatch) => {
   dispatch({ type: ADDPROJECT_REQUEST });
 
-  fetch("http://localhost:7070/projects/addProject", {
+  fetch("https://aspireo.onrender.com/projects/addProject", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -61,7 +61,7 @@ export const addProjectFun = (data, token, toast) => (dispatch) => {
 export const getProjectsFun = (token) => (dispatch) => {
   dispatch({ type: GETPROJECT_REQUEST });
 
-  fetch("http://localhost:7070/projects/get", {
+  fetch("https://aspireo.onrender.com/projects/get", {
     method: "GET",
     headers: {
       "Content-type": "application/json",
@@ -87,7 +87,7 @@ export const getProjectsFun = (token) => (dispatch) => {
 export const getAllUsersFun = (token) => (dispatch) => {
   dispatch({ type: ALLUSERS_REQUEST });
 
-  fetch("http://localhost:7070/projects/allusers", {
+  fetch("https://aspireo.onrender.com/projects/allusers", {
     method: "GET",
     headers: {
       "Content-type": "application/json",
@@ -111,7 +111,7 @@ export const getAllUsersFun = (token) => (dispatch) => {
 export const updateProjectFun = (data, id, token,toast) => (dispatch) => {
   dispatch({ type: UPDATEPROJECT_REQUEST });
 
-  fetch(`http://localhost:7070/projects/update/${id}`, {
+  fetch(`https://aspireo.onrender.com/projects/update/${id}`, {
     method: "PATCH",
     headers: {
       "Content-type": "application/json",
@@ -155,7 +155,7 @@ export const updateProjectFun = (data, id, token,toast) => (dispatch) => {
 export const updateProjectChatFun = (data, id, token,toast) => (dispatch) => {
   dispatch({ type: UPDATEPROJECT_REQUEST });
 
-  fetch(`http://localhost:7070/projects/updateChat/${id}`, {
+  fetch(`https://aspireo.onrender.com/projects/updateChat/${id}`, {
     method: "PATCH",
     headers: {
       "Content-type": "application/json",
@@ -201,7 +201,7 @@ export const updateProjectChatFun = (data, id, token,toast) => (dispatch) => {
 
 //   dispatch({ type:DELETETASK_REQUEST})
 
-//   fetch(`http://localhost:7070/tasks/delete/${id}`, {
+//   fetch(`https://aspireo.onrender.com/tasks/delete/${id}`, {
 //     method: "DELETE",
 //     headers: { "Content-type": "application/json" },
 //   })

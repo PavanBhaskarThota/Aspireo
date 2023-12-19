@@ -5,7 +5,7 @@ import axios from "axios"
 export const setUsers =(params) => (dispatch) => {
   // Write logic here
 
-  axios.get("http://localhost:7070/users/get",{
+  axios.get("https://aspireo.onrender.com/users/get",{
     params : params
   })
   .then((res) => {
@@ -44,7 +44,7 @@ export const setTasks=(token)=>(dispatch)=>{
   // dispatch({ type:SET_TASKS })
 
   console.log(token, "action")
-  fetch("http://localhost:7070/tasks/admintasks", {
+  fetch("https://aspireo.onrender.com/tasks/admintasks", {
     method: "GET",
     headers: {
       "Content-type": "application/json",
@@ -73,7 +73,7 @@ export const setTasks=(token)=>(dispatch)=>{
 export const setProjects =(params) => (dispatch) => {
   // Write logic here
 
-  axios.get("http://localhost:7070/projects/get",{
+  axios.get("https://aspireo.onrender.com/projects/get",{
     params : params
   })
   .then((res) => {
@@ -91,7 +91,7 @@ export const setProjects =(params) => (dispatch) => {
 export const setLogs =(params) => (dispatch) => {
   // Write logic here
 
-  axios.get("http://localhost:7070/logs",{
+  axios.get("https://aspireo.onrender.com/logs",{
     params : params
   })
   .then((res) => {

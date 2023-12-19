@@ -7,7 +7,7 @@ export const addTaskFun=(data,token,toast)=>(dispatch)=>{
     dispatch({ type:ADDTASK_REQUEST })
 
     
-    fetch("http://localhost:7070/tasks/add", {
+    fetch("https://aspireo.onrender.com/tasks/add", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -55,7 +55,7 @@ export const getTasksFun=(token)=>(dispatch)=>{
   dispatch({ type:GETTASKS_REQUEST })
 
   console.log(token, "action")
-  fetch("http://localhost:7070/tasks/", {
+  fetch("https://aspireo.onrender.com/tasks/", {
     method: "GET",
     headers: {
       "Content-type": "application/json",
@@ -83,7 +83,7 @@ export const updateTaskFun=(data,id,token,toast)=>(dispatch)=>{
   dispatch({ type:UPDATETASK_REQUEST})
 
   
-  fetch(`http://localhost:7070/tasks/update/${id}`, {
+  fetch(`https://aspireo.onrender.com/tasks/update/${id}`, {
     method: "PATCH",
     headers: {
       "Content-type": "application/json",
@@ -129,7 +129,7 @@ export const deleteTaskFun=(id,token,toast)=>(dispatch)=>{
   dispatch({ type:DELETETASK_REQUEST})
 
   
-  fetch(`http://localhost:7070/tasks/delete/${id}`, {
+  fetch(`https://aspireo.onrender.com/tasks/delete/${id}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",

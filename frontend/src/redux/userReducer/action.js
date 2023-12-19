@@ -3,7 +3,7 @@
 
 // export const Login=(data,toast)=>(dispatch)=>{
 //     dispatch({type:LOGIN_REQUEST})
-//     fetch("http://localhost:7070/users/login",{
+//     fetch("https://aspireo.onrender.com/users/login",{
 //         method: "POST",
 //         headers: { "Content-type": "application/json" },
 //         body: JSON.stringify(data),
@@ -30,7 +30,7 @@
 
 // export const SignUp=(data,toast)=>(dispatch)=>{
 //       dispatch({type:SIGNUP_REQUEST})
-//     fetch("http://localhost:7070/users/registration",{
+//     fetch("https://aspireo.onrender.com/users/registration",{
 //         method: "POST",
 //         headers: { "Content-type": "application/json" },
 //         body: JSON.stringify(data),
@@ -65,7 +65,7 @@ import {
 export const Login = (data, toast,navigate) => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   console.log("hi");
-  // fetch("http://localhost:7070/users/login",{
+  // fetch("https://aspireo.onrender.com/users/login",{
   //     method: "POST",
   //     headers: { "Content-type": "application/json" },
   //     body: JSON.stringify(data),
@@ -94,7 +94,7 @@ export const Login = (data, toast,navigate) => (dispatch) => {
   //    dispatch({type:LOGIN_FAILURE})
   // })
 
-  fetch("http://localhost:7070/users/login", {
+  fetch("https://aspireo.onrender.com/users/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -156,7 +156,7 @@ export const Login = (data, toast,navigate) => (dispatch) => {
 
 export const SignUp = (data, toast) => (dispatch) => {
   dispatch({ type: SIGNUP_REQUEST });
-  fetch("http://localhost:7070/users/registration", {
+  fetch("https://aspireo.onrender.com/users/registration", {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(data),
@@ -196,10 +196,10 @@ export const SignUp = (data, toast) => (dispatch) => {
     });
 };
 
-export const userLogout = (token,toast) => (dispatch) => {
+export const userLogout = (token,toast,navigate) => (dispatch) => {
   console.log('token', token)
   dispatch({ type: LOGOUT_REQUEST });
-  fetch("http://localhost:7070/users/logout", {
+  fetch("https://aspireo.onrender.com/users/logout", {
     method: "GET",
     headers: {
       "Content-type": "application/json",
@@ -210,6 +210,8 @@ export const userLogout = (token,toast) => (dispatch) => {
     .then((res) => {
       console.log(res);
       if(res.message==="LoggedOut Successfully"){
+
+        navigate('/login')
 
         dispatch({ type: LOGOUT_SUCCESS });
         toast({
