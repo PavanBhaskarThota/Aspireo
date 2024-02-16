@@ -1,13 +1,11 @@
-# smart-city-pulse-8901
-
-# Aspireo - Task and Project Management Application
+## Aspireo - Task and Project Management Application
 
 Welcome to Aspireo, your go-to platform for efficient task and project management. Aspireo is designed to streamline your workflow, enabling seamless collaboration on projects and ensuring timely completion of tasks. Below is a detailed overview of the features, functionality, and technology stack of Aspireo.
 
-# Deployed Link:
-https://aspireo.vercel.app/
+## Deployed Link:
+[Live Aspireo](https://aspireo.vercel.app/)
 
-# Overview
+## Overview
 
 Aspireo is a comprehensive task and project management application that empowers teams and individuals to organize, collaborate, and succeed. The platform is equipped with intuitive tools to handle tasks with deadlines and foster communication among project contributors through a built-in chat feature.
 
